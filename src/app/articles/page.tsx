@@ -35,26 +35,26 @@ function Article({ article }: { article: ArticleWithSlug }) {
 }
 
 export const metadata: Metadata = {
-  title: 'Articles',
+  title: 'Poster og annonseringer',
   description:
-    'All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.',
+    'Under utbygging',
 }
 
 export default async function ArticlesIndex() {
-  let articles = await getAllArticles()
+  // let articles = await getAllArticles()
 
   return (
     <SimpleLayout
-      title="Diverse artikler om disc golf, banen og andre temaer."
-      intro="Når vi har behov for å grave dypt og kaste langt, skriver vi artikler."
+      title="Under utbygging"
+      intro="Denne siden er under utbygging."
     >
-      <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-        <div className="flex max-w-3xl flex-col space-y-16">
-          {articles.map((article) => (
-            <Article key={article.slug} article={article} />
-          ))}
-        </div>
-      </div>
+      {/*<div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">*/}
+      {/*  <div className="flex max-w-3xl flex-col space-y-16">*/}
+      {/*    {articles.map((article) => (*/}
+      {/*      <Article key={article.slug} article={article} />*/}
+      {/*    ))}*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </SimpleLayout>
   )
 }
