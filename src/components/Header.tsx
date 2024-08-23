@@ -14,7 +14,7 @@ import {
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import avatarImage from '@/images/logo-test.webp'
+import avatarImage from '@/images/flaktveit-frisbeegolf-logo.png'
 
 function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -170,8 +170,6 @@ function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
         <NavItem href="/articles">Artikler</NavItem>
         <NavItem href="/course">Banen</NavItem>
         <NavItem href="/membership">Bli medlem</NavItem>
-        <NavItem href="/tournaments">Turneringer</NavItem>
-        <NavItem href="/weeklies">Ukesgolf</NavItem>
       </ul>
     </nav>
   )

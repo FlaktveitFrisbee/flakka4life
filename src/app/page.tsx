@@ -250,7 +250,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  let articles = []
 
   return (
     <>
@@ -261,6 +261,8 @@ export default async function Home() {
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Velkommen til Flakka4Life, den offisielle nettsiden til Flaktveit Frisbeefolf.
+
+            Helt fresh og vi jobber kontinuerlig med å utvikle den. Foreløpig er kun funksjonen for medlemskap tilgjengelig, men vi har flere utvidelser planlagt i løpet av året. Målet er å tilby en komplett tjeneste for medlemmer og interesserte, med informasjon, verktøy og ressurser som vil effektivisere din opplevelse. Følg med for kommende oppdateringer.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -291,8 +293,8 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
-            <Resume />
+            {/*<Newsletter />*/}
+            {/*<Resume />*/}
           </div>
         </div>
       </Container>
