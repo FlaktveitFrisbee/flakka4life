@@ -21,8 +21,9 @@ import image2 from '@/images/photos/02.jpg'
 import image3 from '@/images/photos/03.jpg'
 import image4 from '@/images/photos/04.jpg'
 import image5 from '@/images/photos/05.jpg'
-import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
+import { type ArticleWithSlug } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { ParticleSystem } from '@/components/Particles'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -250,7 +251,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = []
+  let articles: any[] = []
 
   return (
     <>
@@ -262,8 +263,11 @@ export default async function Home() {
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Velkommen til Flakka4Life, den offisielle nettsiden til Flaktveit Frisbeefolf.
 
-            Helt fresh og vi jobber kontinuerlig med å utvikle den. Foreløpig er kun funksjonen for medlemskap tilgjengelig, men vi har flere utvidelser planlagt i løpet av året. Målet er å tilby en komplett tjeneste for medlemmer og interesserte, med informasjon, verktøy og ressurser som vil effektivisere din opplevelse. Følg med for kommende oppdateringer.
+            Rykende fersk og vi jobber kontinuerlig med å utvikle den. Foreløpig er kun funksjonen for medlemskap tilgjengelig, men vi har flere utvidelser planlagt i løpet av året. Målet er å tilby en komplett tjeneste for medlemmer og interesserte, med informasjon, verktøy og ressurser som vil effektivisere din opplevelse. Følg med for kommende oppdateringer.
           </p>
+          <div className="mt-6 flex gap-6">
+          <ParticleSystem />
+          </div>
           <div className="mt-6 flex gap-6">
             <SocialLink
               href="#"
