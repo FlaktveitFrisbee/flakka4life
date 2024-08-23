@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Button } from '@/components/Button'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Bli medlem i klubben',
@@ -52,6 +53,7 @@ export default function MembershipPage() {
     }
 
     console.log('Discord message sent')
+    redirect('/membership/signup-success')
   }
 
   return (
