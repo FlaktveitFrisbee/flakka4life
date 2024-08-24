@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from "next/navigation"
 
-export async function createInvoice(formData: FormData) {
+export async function sendMembershipDiscordNotification(formData: FormData) {
 
     const rawFormData = {
         name: formData.get('name'),

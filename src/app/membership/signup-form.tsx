@@ -1,14 +1,14 @@
 'use client'
 import { Button } from '@/components/Button'
 import React from 'react'
-import { createInvoice } from './actions'
+import { sendMembershipDiscordNotification } from './actions'
 import { useFormStatus } from 'react-dom'
 
 export default function SignupForm() {
   const { pending } = useFormStatus()
   return (
     <form
-      action={pending ? undefined : createInvoice}
+      action={pending ? undefined : sendMembershipDiscordNotification}
       className="grid w-full max-w-lg grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
     >
       <div className="col-span-1 sm:col-span-6">
