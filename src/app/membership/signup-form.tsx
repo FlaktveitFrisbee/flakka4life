@@ -1,14 +1,12 @@
-'use client'
-import { Button } from '@/components/Button'
 import React from 'react'
 import { sendMembershipDiscordNotification } from './actions'
-import { useFormStatus } from 'react-dom'
+import SubmitButton from './submit-button'
+import { LoaderCircle } from 'lucide-react'
 
 export default function SignupForm() {
-  const { pending } = useFormStatus()
   return (
     <form
-      action={pending ? undefined : sendMembershipDiscordNotification}
+      action={sendMembershipDiscordNotification}
       className="grid w-full max-w-lg grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
     >
       <div className="col-span-1 sm:col-span-6">
@@ -133,7 +131,15 @@ export default function SignupForm() {
         </div>
       </div>
       <div className="col-span-1 sm:col-span-6">
-        <Button disabled={pending}>Send inn</Button>
+        <SubmitButton
+          defaultContent="Send inn"
+          pendingContent={
+            <>
+              <span className="">Sender inn...</span>
+              <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />
+            </>
+          }
+        />
       </div>
     </form>
   )
