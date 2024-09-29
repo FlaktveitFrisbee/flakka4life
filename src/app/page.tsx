@@ -10,7 +10,7 @@ import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
-  XIcon
+  XIcon,
 } from '@/components/SocialIcons'
 import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
@@ -194,14 +194,13 @@ function Resume() {
       logo: logoPlanetaria,
       start: {
         label: '14. september 2024',
-        dateTime: new Date(2024, 8, 14).toString()
+        dateTime: new Date(2024, 8, 14).toString(),
       },
       end: {
         label: '15. september 2024',
         dateTime: new Date().getFullYear().toString(),
       },
     },
-
   ]
 
   return (
@@ -229,22 +228,24 @@ function Photos() {
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].reverse().map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800 border border-amber-400',
-              rotations[imageIndex % rotations.length],
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
+        {[image1, image2, image3, image4, image5]
+          .reverse()
+          .map((image, imageIndex) => (
+            <div
+              key={image.src}
+              className={clsx(
+                'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl border border-amber-400 bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
+                rotations[imageIndex % rotations.length],
+              )}
+            >
+              <Image
+                src={image}
+                alt=""
+                sizes="(min-width: 640px) 18rem, 11rem"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          ))}
       </div>
     </div>
   )
@@ -261,13 +262,14 @@ export default async function Home() {
             Flaktveit Frisbeegolf
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Velkommen til Flakka4Life, den offisielle nettsiden til Flaktveit Frisbeefolf.
-
-            Rykende fersk og vi jobber kontinuerlig med å utvikle den. Foreløpig er kun funksjonen for medlemskap tilgjengelig, men vi har flere utvidelser planlagt i løpet av året. Målet er å tilby en komplett tjeneste for medlemmer og interesserte, med informasjon, verktøy og ressurser som vil effektivisere din opplevelse. Følg med for kommende oppdateringer.
+            Velkommen til Flakka4Life, den offisielle nettsiden til Flaktveit
+            Frisbeefolf. Rykende fersk og vi jobber kontinuerlig med å utvikle
+            den. Foreløpig er kun funksjonen for medlemskap tilgjengelig, men vi
+            har flere utvidelser planlagt i løpet av året. Målet er å tilby en
+            komplett tjeneste for medlemmer og interesserte, med informasjon,
+            verktøy og ressurser som vil effektivisere din opplevelse. Følg med
+            for kommende oppdateringer.
           </p>
-          <div className="mt-6 flex gap-6">
-          <ParticleSystem />
-          </div>
           <div className="mt-6 flex gap-6">
             <SocialLink
               href="#"
@@ -284,10 +286,8 @@ export default async function Home() {
         </div>
       </Container>
       <Photos />
-      <div className="w-full mx-auto flex flex-row  justify-center items-center m-4 gap-4">
-      <Button href="/membership">
-        Bli medlem!
-      </Button>
+      <div className="m-4 mx-auto flex w-full flex-row items-center justify-center gap-4">
+        <Button href="/membership">Bli medlem!</Button>
       </div>
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
