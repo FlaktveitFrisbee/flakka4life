@@ -5,6 +5,9 @@ import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
+  Row,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table'
 
@@ -16,9 +19,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table/table'
-import { PlayerEntry } from '@/lib/utils'
-import { Button } from '@/components/Button'
+import { cn, PlayerEntry } from '@/lib/utils'
 import { DataTablePagination } from '@/components/ui/table/pagination'
+import { DataTableColumnHeader } from '@/components/ui/table/sortable-header'
+import React from 'react'
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
@@ -31,6 +35,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([])
   const table = useReactTable({
     data,
     columns,
@@ -39,6 +44,11 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       columnPinning: { left: ['rank', 'name'], right: ['total'] },
+    },
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
     },
   })
 
@@ -51,7 +61,13 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      key={header.id}
+                      style={{
+                        minWidth: header.column.columnDef.size,
+                        maxWidth: header.column.columnDef.size,
+                      }}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -72,7 +88,13 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && 'selected'}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      style={{
+                        minWidth: cell.column.columnDef.size,
+                        maxWidth: cell.column.columnDef.size,
+                      }}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),
@@ -108,32 +130,40 @@ export default function WeeklyTable(props: {
   const columns: ColumnDef<PlayerEntry>[] = [
     {
       accessorKey: 'rank',
-      header: '',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="" />
+      ),
       size: 35,
     },
     {
       accessorKey: 'name',
       header: 'Name',
-      size: 150,
+      minSize: 150,
     },
     ...rounds.map((round, index: number) => ({
-      accessorKey: `displayItems.${round}.points`,
       header: `Runde ${index + 1}`,
-      size: 100,
-      Cell: ({ renderedCellValue, row }: any) => {
+      size: 95,
+      cell: ({ row }: { row: Row<PlayerEntry> }) => {
         const isRemoved =
-          !row.original[round].significant && row.original[round].points > 0
-        const removedStyle = isRemoved && 'text-gray-400 italic'
+          !row.original.displayItems[round].significant &&
+          row.original.displayItems[round].points > 0
         return (
-          <div className={`flex items-center ${removedStyle} rounded-lg`}>
-            {renderedCellValue}
+          <div
+            className={cn(
+              'flex items-center rounded-lg',
+              isRemoved && 'italic text-gray-400',
+            )}
+          >
+            {row.original.displayItems[round].points}
           </div>
         )
       },
     })),
     {
       accessorKey: 'total',
-      header: 'Total',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Total" />
+      ),
       size: 80,
     },
   ]
