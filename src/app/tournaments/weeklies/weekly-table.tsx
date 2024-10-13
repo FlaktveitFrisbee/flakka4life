@@ -21,10 +21,20 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table/table'
-import { cn, PlayerEntry } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { DataTablePagination } from '@/components/ui/table/pagination'
 import { DataTableColumnHeader } from '@/components/ui/table/sortable-header'
 import React from 'react'
+import { Competition } from '@/lib/types/metrixresult'
+import {
+  Select,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select'
+import { Label } from '@/components/ui/label'
+import { createTableData, PlayerEntry } from './helpers'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -51,6 +61,7 @@ const getColumnStyles = (column: Column<any, any>): React.CSSProperties => {
     zIndex: isPinned ? 1 : 0,
     minWidth: column.columnDef.size,
     maxWidth: column.columnDef.size,
+    backgroundColor: isPinned ? 'var(--background)' : undefined,
   }
 }
 
@@ -85,11 +96,7 @@ export function DataTable<TData, TValue>({
                 {headerGroup.headers.map((header) => {
                   const style = getColumnStyles(header.column)
                   return (
-                    <TableHead
-                      key={header.id}
-                      style={style}
-                      className="bg-background"
-                    >
+                    <TableHead key={header.id} style={{ ...style }}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -112,11 +119,7 @@ export function DataTable<TData, TValue>({
                   {row.getVisibleCells().map((cell) => {
                     const style = getColumnStyles(cell.column)
                     return (
-                      <TableCell
-                        key={cell.id}
-                        style={style}
-                        className="bg-background"
-                      >
+                      <TableCell key={cell.id} style={{ ...style }}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext(),
@@ -144,51 +147,100 @@ export function DataTable<TData, TValue>({
   )
 }
 
-export default function WeeklyTable(props: {
-  data: PlayerEntry[]
-  rounds: string[]
-}) {
-  const { data, rounds } = props
+const getUniqueClasses = (competition: Competition) =>
+  Array.from(
+    new Set(
+      competition.SubCompetitions.flatMap((round) =>
+        round.Results.map((result) => result.ClassName),
+      ),
+    ),
+  )
 
-  const columns: ColumnDef<PlayerEntry>[] = [
-    {
-      accessorKey: 'rank',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="" />
-      ),
-      size: 35,
-    },
-    {
-      accessorKey: 'name',
-      header: 'Name',
-      minSize: 150,
-    },
-    ...rounds.map((round, index: number) => ({
-      header: `Runde ${index + 1}`,
-      size: 95,
-      cell: ({ row }: { row: Row<PlayerEntry> }) => {
-        const isRemoved =
-          !row.original.displayItems[round].significant &&
-          row.original.displayItems[round].points > 0
-        return (
-          <div
-            className={cn(
-              'flex items-center rounded-lg',
-              isRemoved && 'italic text-gray-400',
-            )}
-          >
-            {row.original.displayItems[round].points}
-          </div>
-        )
+export default function WeeklyTable(props: {
+  competition: Competition
+  significantRounds: number
+}) {
+  const { competition, significantRounds } = props
+  const rounds = competition.SubCompetitions.map((round) => round.ID)
+  const uniqueClasses = React.useMemo(
+    () => getUniqueClasses(competition),
+    [competition],
+  )
+
+  const [selectedClass, setSelectedClass] = React.useState(uniqueClasses[0])
+
+  const tableData = createTableData(
+    competition,
+    selectedClass,
+    significantRounds,
+  )
+  const columns: ColumnDef<PlayerEntry>[] = React.useMemo(
+    () => [
+      {
+        accessorKey: 'rank',
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="" />
+        ),
+        size: 35,
       },
-    })),
-    {
-      accessorKey: 'total',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Total" />
-      ),
-      size: 83,
-    },
-  ]
-  return <DataTable data={data} columns={columns} />
+      {
+        accessorKey: 'name',
+        header: 'Name',
+        minSize: 150,
+      },
+      ...rounds.map((round, index: number) => ({
+        header: `Runde ${index + 1}`,
+        size: 95,
+        cell: ({ row }: { row: Row<PlayerEntry> }) => {
+          const isRemoved =
+            !row.original.displayItems[round].significant &&
+            row.original.displayItems[round].points > 0
+          return (
+            <div
+              className={cn(
+                'flex items-center rounded-lg',
+                isRemoved && 'italic text-gray-400',
+              )}
+            >
+              {row.original.displayItems[round].points}
+            </div>
+          )
+        },
+      })),
+      {
+        accessorKey: 'total',
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Total" />
+        ),
+        size: 83,
+      },
+    ],
+    [rounds],
+  )
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-2">
+        <Label htmlFor="class">Klasse:</Label>
+        <Select onValueChange={setSelectedClass} defaultValue={selectedClass}>
+          <SelectTrigger className="w-[180px]" id="class">
+            <SelectValue placeholder="Klasse" />
+          </SelectTrigger>
+          <SelectContent>
+            {uniqueClasses.map((className) => {
+              if (className === '') {
+                return null
+              }
+              return (
+                <SelectItem key={className} value={className}>
+                  {className}
+                </SelectItem>
+              )
+            })}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <DataTable data={tableData} columns={columns} />
+    </div>
+  )
 }

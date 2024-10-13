@@ -1,5 +1,5 @@
 import 'server-only'
-import { Convert } from '@/lib/types/metrixresult'
+import { Competition, DiscgolfMetrixResult } from '@/lib/types/metrixresult'
 
 export async function getCompetition(competitionId: string) {
   const params = new URLSearchParams({
@@ -15,7 +15,15 @@ export async function getCompetition(competitionId: string) {
     throw new Error('Failed to fetch competition')
   }
 
-  const data = await response.text()
+  const data = (await response.json()) as DiscgolfMetrixResult
 
-  return Convert.toDiscgolfMetrixResult(data).competition
+  if (data.Errors.length > 0) {
+    return {
+      error: data.Errors,
+    }
+  }
+
+  return {
+    competition: data.Competition as Competition,
+  }
 }

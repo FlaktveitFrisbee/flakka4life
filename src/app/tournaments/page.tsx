@@ -50,7 +50,9 @@ export default function Speaking() {
   return (
     <SimpleLayout title="Turneringer" intro="Denne siden er under utbygging.">
       <div className="space-y-20">
-        <Button href="/tournaments/weeklies">Flakkacup leaderboard</Button>
+        <Button href="/tournaments/weeklies/2874902">
+          Flakkacup leaderboard
+        </Button>
         <TournamentSection title="Siste og oppkommende turneringer">
           <Appearance
             href="https://discgolfmetrix.com/3082767"
