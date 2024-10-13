@@ -3,6 +3,7 @@ import { type Metadata } from 'next'
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { Button } from '@/components/Button'
 
 function TournamentSection({
   children,
@@ -42,17 +43,14 @@ function Appearance({
 
 export const metadata: Metadata = {
   title: 'Turneringer',
-  description:
-    'Under utbygging',
+  description: 'Under utbygging',
 }
 
 export default function Speaking() {
   return (
-    <SimpleLayout
-      title="Turneringer"
-      intro="Denne siden er under utbygging."
-    >
+    <SimpleLayout title="Turneringer" intro="Denne siden er under utbygging.">
       <div className="space-y-20">
+        <Button href="/tournaments/weeklies">Flakkacup leaderboard</Button>
         <TournamentSection title="Siste og oppkommende turneringer">
           <Appearance
             href="https://discgolfmetrix.com/3082767"
@@ -72,14 +70,14 @@ export default function Speaking() {
         <TournamentSection title="Weeklies">
           <Appearance
             href="https://udisc.com"
-            title="Flakka cup Winter Edition 2024"
+            title="Flakkacup Winter Edition 2024"
             description="Ukentlig turnering. Vi har begynt å forsøke å bruke UDisc til weeklies"
             event="Weeklies"
             cta="Link til UDisc League"
           />
           <Appearance
             href="https://discgolfmetrix.com/2874902"
-            title="Flakka cup Summer Edition 2024"
+            title="Flakkacup Summer Edition 2024"
             description="Ukentlig turnering. Hver torsdag kl. 18 i perioden april til oktober."
             event="Weeklies"
             cta="Link til Metrix"

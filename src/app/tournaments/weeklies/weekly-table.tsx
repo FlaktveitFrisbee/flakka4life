@@ -1,7 +1,9 @@
 'use client'
 
 import {
+  Column,
   ColumnDef,
+  ColumnPinningPosition,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -23,12 +25,33 @@ import { cn, PlayerEntry } from '@/lib/utils'
 import { DataTablePagination } from '@/components/ui/table/pagination'
 import { DataTableColumnHeader } from '@/components/ui/table/sortable-header'
 import React from 'react'
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+}
+
+const getColumnStyles = (column: Column<any, any>): React.CSSProperties => {
+  const isPinned = column.getIsPinned()
+  const isLastLeftPinnedColumn =
+    isPinned === 'left' && column.getIsLastColumn('left')
+  const isFirstRightPinnedColumn =
+    isPinned === 'right' && column.getIsFirstColumn('right')
+
+  return {
+    boxShadow: isLastLeftPinnedColumn
+      ? '-4px 0 4px -4px gray inset'
+      : isFirstRightPinnedColumn
+        ? '4px 0 4px -4px gray inset'
+        : undefined,
+    left: isPinned === 'left' ? `${column.getStart('left')}px` : undefined,
+    right: isPinned === 'right' ? `${column.getAfter('right')}px` : undefined,
+    position: isPinned ? 'sticky' : 'relative',
+    width: column.getSize(),
+    zIndex: isPinned ? 1 : 0,
+    minWidth: column.columnDef.size,
+    maxWidth: column.columnDef.size,
+  }
 }
 
 export function DataTable<TData, TValue>({
@@ -54,19 +77,18 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="rounded-md border">
+      <div className="mb-4 overflow-hidden rounded-lg border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
+                  const style = getColumnStyles(header.column)
                   return (
                     <TableHead
                       key={header.id}
-                      style={{
-                        minWidth: header.column.columnDef.size,
-                        maxWidth: header.column.columnDef.size,
-                      }}
+                      style={style}
+                      className="bg-background"
                     >
                       {header.isPlaceholder
                         ? null
@@ -87,20 +109,21 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      key={cell.id}
-                      style={{
-                        minWidth: cell.column.columnDef.size,
-                        maxWidth: cell.column.columnDef.size,
-                      }}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
+                  {row.getVisibleCells().map((cell) => {
+                    const style = getColumnStyles(cell.column)
+                    return (
+                      <TableCell
+                        key={cell.id}
+                        style={style}
+                        className="bg-background"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    )
+                  })}
                 </TableRow>
               ))
             ) : (
@@ -164,7 +187,7 @@ export default function WeeklyTable(props: {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Total" />
       ),
-      size: 80,
+      size: 83,
     },
   ]
   return <DataTable data={data} columns={columns} />

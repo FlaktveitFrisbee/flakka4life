@@ -1,3 +1,4 @@
+import 'server-only'
 import { Convert } from '@/lib/types/metrixresult'
 
 export async function getCompetition(competitionId: string) {

@@ -8,8 +8,7 @@ import '@/styles/tailwind.css'
 export const metadata: Metadata = {
   title: {
     template: '%s - Flakka4Life',
-    default:
-      `Flakka4Life - Flaktveit Frisbeegolf's offisielle nettside`,
+    default: `Flakka4Life - Flaktveit Frisbeegolf's offisielle nettside`,
   },
   icons: {
     icon: '/favicon.ico',

@@ -33,15 +33,15 @@ export function DataTableColumnHeader<TData, TValue>({
         onClick={handleSort}
         variant="ghost"
         size="sm"
-        className="data-[state=open]:bg-accent -ml-3 h-8"
+        className="data-[state=open]:bg-accent -ml-3 h-8 space-x-2"
       >
-        <span>{title}</span>
+        {title && <span>{title}</span>}
         {column.getIsSorted() === 'desc' ? (
-          <ArrowDownIcon className="ml-2 h-4 w-4" />
+          <ArrowDownIcon className="h-4 w-4" />
         ) : column.getIsSorted() === 'asc' ? (
-          <ArrowUpIcon className="ml-2 h-4 w-4" />
+          <ArrowUpIcon className="h-4 w-4" />
         ) : (
-          <CaretSortIcon className="ml-2 h-4 w-4" />
+          <CaretSortIcon className="h-4 w-4" />
         )}
       </Button>
     </div>
