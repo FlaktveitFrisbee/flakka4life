@@ -290,6 +290,21 @@ export default async function Home() {
         <Button href="/membership">Bli medlem!</Button>
       </div>
       <Container className="mt-24 md:mt-28">
+        <h2 className="pb-8 text-3xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+          Årshjul
+        </h2>
+        <div className="flex items-center justify-center">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&title=Flaktveit%20Frisbeegolf&src=Zmxha3R2ZWl0ZnJpc2JlZWdvbGZAZ21haWwuY29t&color=%23F6BF26"
+            // style="border:solid 1px #777"
+            width="1024"
+            height="600"
+            // frameborder="0"
+            // scrolling="no"
+          ></iframe>
+        </div>
+      </Container>
+      {/* <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
@@ -297,11 +312,12 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            {/*<Newsletter />*/}
-            {/*<Resume />*/}
+            <Newsletter />
+            <Resume />
+         
           </div>
         </div>
-      </Container>
+      </Container> */}
     </>
   )
 }
