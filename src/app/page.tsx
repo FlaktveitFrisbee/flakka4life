@@ -295,12 +295,10 @@ export default async function Home() {
         </h2>
         <div className="flex items-center justify-center">
           <iframe
-            src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&title=Flaktveit%20Frisbeegolf&src=Zmxha3R2ZWl0ZnJpc2JlZWdvbGZAZ21haWwuY29t&color=%23F6BF26"
-            // style="border:solid 1px #777"
-            width="1024"
+            src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FBerlin&showPrint=0&title=Flaktveit%20Frisbeegolf&src=Zmxha3R2ZWl0ZnJpc2JlZWdvbGZAZ21haWwuY29t&color=%23F6BF26&mode=AGENDA&showCalendars=0"
+            width="100%"
             height="600"
-            // frameborder="0"
-            // scrolling="no"
+            className="rounded-xl"
           ></iframe>
         </div>
       </Container>
