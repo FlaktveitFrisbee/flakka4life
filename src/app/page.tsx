@@ -262,13 +262,9 @@ export default async function Home() {
             Flaktveit Frisbeegolf
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Velkommen til Flakka4Life, den offisielle nettsiden til Flaktveit
-            Frisbeefolf. Rykende fersk og vi jobber kontinuerlig med å utvikle
-            den. Foreløpig er kun funksjonen for medlemskap tilgjengelig, men vi
-            har flere utvidelser planlagt i løpet av året. Målet er å tilby en
-            komplett tjeneste for medlemmer og interesserte, med informasjon,
-            verktøy og ressurser som vil effektivisere din opplevelse. Følg med
-            for kommende oppdateringer.
+            Velkommen til den offisielle nettsiden til Flaktveit
+            Frisbeegolf. Her kan du melde deg inn i klubben, finne informasjon om banen eller sjekke kalenderen vår.
+            Alle funksjoner er ikke tilgjengelig enda, men vi jobber med å ferdigstille dette.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

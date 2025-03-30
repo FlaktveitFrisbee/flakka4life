@@ -3,7 +3,7 @@ import { Header } from '@/components/Header'
 
 export const navigation = [
   { href: '/about', label: 'Om oss' },
-  { href: '/articles', label: 'Artikler' },
+  { href: '/articles', label: 'Innlegg' },
   { href: '/course', label: 'Banen' },
   { href: '/membership', label: 'Bli medlem' },
   { href: '/tournaments', label: 'Turneringer' },
