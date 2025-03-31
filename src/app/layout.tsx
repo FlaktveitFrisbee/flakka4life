@@ -1,41 +1,32 @@
-import { type Metadata } from 'next'
+import { type Metadata } from "next";
 
-import { Providers } from '@/app/providers'
-import { Layout } from '@/components/Layout'
-
-import '@/styles/tailwind.css'
+import "@/styles/tailwind.css";
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Flaktveit Frisbeegolf',
+    template: "%s - Flaktveit Frisbeegolf",
     default: `Flaktveit Frisbeegolf`,
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
   description:
-    'Velkommen til den offisielle nettsiden til Flaktveit Frisbeegolf.',
+    "Velkommen til den offisielle nettsiden til Flaktveit Frisbeegolf.",
   alternates: {
     types: {
-      'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
+      "application/rss+xml": `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
     },
   },
-}
+};
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="flex h-full bg-zinc-50 dark:bg-black">
-        <Providers>
-          <div className="flex w-full">
-            <Layout>{children}</Layout>
-          </div>
-        </Providers>
-      </body>
+    <html lang="en" className="antialiased" suppressHydrationWarning>
+      <body className="min-h-screen bg-zinc-50 dark:bg-black">{children}</body>
     </html>
-  )
+  );
 }
