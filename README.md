@@ -1,34 +1,36 @@
 # Flakka4Life
 
-## Getting started
+## Prerequisites
 
-To get started with this template, first install the npm dependencies:
+First, make sure you have pnpm installed. If you don't have it installed, you can install it using npm:
 
 ```bash
-npm install
+npm install -g pnpm
 ```
 
-Next, create a `.env.local` file in the root of your project and set the `NEXT_PUBLIC_SITE_URL` variable to your site's public URL:
+## Getting started
 
+To get started with this template, first install the pnpm dependencies:
+
+```bash
+pnpm install
 ```
-NEXT_PUBLIC_SITE_URL=https://example.com
-```
+
+Next, create a `.env.local` file in the root of your project and copy over the values from [.env.example](.env.example). For any empty values in the example file, you can get them from:
+
+- Your Vercel project settings
+- Another developer on the team
+- Your deployment platform's environment variables
+
+⚠️ **Important**: Never commit your `.env.local` file or any other files containing secrets to git. The `.env.local` file is already in our `.gitignore` to prevent accidental commits.
 
 Next, run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
-
-## Customizing
-
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
-
-## License
-
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
 
 ## Learn more
 
@@ -36,5 +38,5 @@ To learn more about the technologies used in this site template, see the followi
 
 - [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
 - [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
-- [MDX](https://mdxjs.com) - the MDX documentation
+  <!-- - [Headless UI](https://headlessui.dev) - the official Headless UI documentation -->
+  <!-- - [MDX](https://mdxjs.com) - the MDX documentation -->
