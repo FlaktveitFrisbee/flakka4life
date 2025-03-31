@@ -1,6 +1,17 @@
-import { type PluginUtils } from 'tailwindcss/types/config'
+type FontSizeValue = [string, { lineHeight: string }]
+type ThemeFunction = (
+  path: string,
+) => string | number | FontSizeValue | undefined
 
-export default function typographyStyles({ theme }: PluginUtils) {
+function getFontSize(theme: ThemeFunction, path: string): string {
+  const value = theme(path)
+  if (Array.isArray(value)) {
+    return value[0]
+  }
+  return String(value)
+}
+
+export default function typographyStyles({ theme }: { theme: ThemeFunction }) {
   return {
     invert: {
       css: {
@@ -85,13 +96,13 @@ export default function typographyStyles({ theme }: PluginUtils) {
           fontWeight: theme('fontWeight.semibold'),
         },
         h2: {
-          fontSize: theme('fontSize.xl')[0],
+          fontSize: getFontSize(theme, 'fontSize.xl'),
           lineHeight: theme('lineHeight.7'),
           marginTop: theme('spacing.20'),
           marginBottom: theme('spacing.4'),
         },
         h3: {
-          fontSize: theme('fontSize.base')[0],
+          fontSize: getFontSize(theme, 'fontSize.base'),
           lineHeight: theme('lineHeight.7'),
           marginTop: theme('spacing.16'),
           marginBottom: theme('spacing.4'),
@@ -126,7 +137,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
         code: {
           display: 'inline-block',
           color: 'var(--tw-prose-code)',
-          fontSize: theme('fontSize.sm')[0],
+          fontSize: getFontSize(theme, 'fontSize.sm'),
           fontWeight: theme('fontWeight.semibold'),
           backgroundColor: 'var(--tw-prose-code-bg)',
           borderRadius: theme('borderRadius.lg'),
@@ -151,7 +162,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
         // Figures
         figcaption: {
           color: 'var(--tw-prose-captions)',
-          fontSize: theme('fontSize.sm')[0],
+          fontSize: getFontSize(theme, 'fontSize.sm'),
           lineHeight: theme('lineHeight.6'),
           marginTop: theme('spacing.3'),
         },
@@ -175,7 +186,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           paddingLeft: theme('spacing[3.5]'),
         },
         'li::marker': {
-          fontSize: theme('fontSize.sm')[0],
+          fontSize: getFontSize(theme, 'fontSize.sm'),
           fontWeight: theme('fontWeight.semibold'),
         },
         'ol > li::marker': {
@@ -196,7 +207,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
         // Code blocks
         pre: {
           color: 'var(--tw-prose-pre-code)',
-          fontSize: theme('fontSize.sm')[0],
+          fontSize: getFontSize(theme, 'fontSize.sm'),
           fontWeight: theme('fontWeight.medium'),
           backgroundColor: 'var(--tw-prose-pre-bg)',
           borderRadius: theme('borderRadius.3xl'),
@@ -232,7 +243,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           width: '100%',
           tableLayout: 'auto',
           textAlign: 'left',
-          fontSize: theme('fontSize.sm')[0],
+          fontSize: getFontSize(theme, 'fontSize.sm'),
         },
         thead: {
           borderBottomWidth: '1px',

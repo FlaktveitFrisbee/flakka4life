@@ -21,7 +21,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   className = cn(
-    'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none disabled:opacity-50 disabled:pointer-events-none',
+    'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none disabled:opacity-50 disabled:pointer-events-none hover:cursor-pointer',
     variantStyles[variant],
     className,
   )
