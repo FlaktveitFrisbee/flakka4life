@@ -5,17 +5,8 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  FacebookIcon,
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
+import { FacebookIcon, InstagramIcon } from '@/components/SocialIcons'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
 import image1 from '@/images/photos/01.jpg'
 import image2 from '@/images/photos/02.jpg'
 import image3 from '@/images/photos/03.jpg'
@@ -23,7 +14,7 @@ import image4 from '@/images/photos/04.jpg'
 import image5 from '@/images/photos/05.jpg'
 import { type ArticleWithSlug } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
-import { ParticleSystem } from '@/components/Particles'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -226,8 +217,8 @@ function Photos() {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
   return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
+    <ScrollArea className="pt-8">
+      <div className="flex justify-center gap-5 px-4 py-4 sm:gap-8">
         {[image1, image2, image3, image4, image5]
           .reverse()
           .map((image, imageIndex) => (
@@ -247,7 +238,8 @@ function Photos() {
             </div>
           ))}
       </div>
-    </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   )
 }
 
@@ -262,9 +254,10 @@ export default async function Home() {
             Flaktveit Frisbeegolf
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Velkommen til den offisielle nettsiden til Flaktveit
-            Frisbeegolf. Her kan du melde deg inn i klubben, finne informasjon om banen eller sjekke kalenderen vår.
-            Alle funksjoner er ikke tilgjengelig enda, men vi jobber med å ferdigstille dette.
+            Velkommen til den offisielle nettsiden til Flaktveit Frisbeegolf.
+            Her kan du melde deg inn i klubben, finne informasjon om banen eller
+            sjekke kalenderen vår. Alle funksjoner er ikke tilgjengelig enda,
+            men vi jobber med å ferdigstille dette.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -285,7 +278,7 @@ export default async function Home() {
       <div className="m-4 mx-auto flex w-full flex-row items-center justify-center gap-4">
         <Button href="/membership">Bli medlem!</Button>
       </div>
-      <Container className="mt-24 md:mt-28">
+      <Container className="pt-16 md:pt-20">
         <h2 className="pb-8 text-3xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
           Årshjul
         </h2>
@@ -308,7 +301,6 @@ export default async function Home() {
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Newsletter />
             <Resume />
-         
           </div>
         </div>
       </Container> */}
