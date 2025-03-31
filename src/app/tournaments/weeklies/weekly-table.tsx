@@ -3,7 +3,6 @@
 import {
   Column,
   ColumnDef,
-  ColumnPinningPosition,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
@@ -41,7 +40,9 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-const getColumnStyles = (column: Column<any, any>): React.CSSProperties => {
+const getColumnStyles = <TData,>(
+  column: Column<TData, unknown>,
+): React.CSSProperties => {
   const isPinned = column.getIsPinned()
   const isLastLeftPinnedColumn =
     isPinned === 'left' && column.getIsLastColumn('left')

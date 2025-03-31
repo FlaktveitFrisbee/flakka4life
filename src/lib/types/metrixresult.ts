@@ -1,15 +1,6 @@
-// To parse this data:
-//
-//   import { Convert, DiscgolfMetrixResult } from "./file";
-//
-//   const discgolfMetrixResult = Convert.toDiscgolfMetrixResult(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
-
 export type DiscgolfMetrixResult = {
   Competition: Competition
-  Errors: any[]
+  Errors: unknown[]
 }
 
 export type Competition = {
@@ -27,8 +18,8 @@ export type Competition = {
   ShowPreviousRoundsSum: null
   HasSubcompetitions: number
   WeeklyHCSummary: null
-  WeeklyHC: any[]
-  Results: any[]
+  WeeklyHC: unknown[]
+  Results: unknown[]
   Tracks: Track[]
   ShowTourView: number
   SubCompetitions: SubCompetition[]
@@ -49,7 +40,7 @@ export type SubCompetition = {
   ShowPreviousRoundsSum: null | string
   HasSubcompetitions: number
   WeeklyHCSummary: null
-  WeeklyHC: any[]
+  WeeklyHC: unknown[]
   Results: Result[]
   Tracks: Track[]
 }
@@ -61,7 +52,7 @@ export type Result = {
   ClassName: string
   CountryCode: string
   Group: string
-  PlayerResults: Array<any[] | PlayerResultClass>
+  PlayerResults: Array<unknown[] | PlayerResultClass>
   Penalty: null
   Sum: number
   Diff: number

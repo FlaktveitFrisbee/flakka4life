@@ -4,13 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import {
-  FacebookIcon,
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon
-} from '@/components/SocialIcons'
+import { FacebookIcon, InstagramIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/photos/trip.jpg'
 
 function SocialLink({
@@ -50,8 +44,7 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export const metadata: Metadata = {
   title: 'Flaktveit Frisbeegolf',
-  description:
-    'Under utbygging',
+  description: 'Under utbygging',
 }
 
 export default function About() {
@@ -73,17 +66,22 @@ export default function About() {
             Flaktveit Frisbeegolf
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-            <p>
-              Denne siden er under utbygging.
-            </p>
+            <p>Denne siden er under utbygging.</p>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="https://www.facebook.com/groups/1691012384470516 " icon={FacebookIcon}>
+            <SocialLink
+              href="https://www.facebook.com/groups/1691012384470516 "
+              icon={FacebookIcon}
+            >
               Følg på Facebook
             </SocialLink>
-            <SocialLink href="https://www.instagram.com/flaktveitfrisbee/" icon={InstagramIcon} className="mt-4">
+            <SocialLink
+              href="https://www.instagram.com/flaktveitfrisbee/"
+              icon={InstagramIcon}
+              className="mt-4"
+            >
               Følg på Instagram
             </SocialLink>
             <SocialLink

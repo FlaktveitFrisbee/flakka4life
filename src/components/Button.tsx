@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import clsx from 'clsx'
 import { cn } from '@/lib/utils'
 
 const variantStyles = {

@@ -1,12 +1,13 @@
 'use client'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { SimpleLayout } from '@/components/SimpleLayout'
 
 // Error boundaries must be Client Components
 
 export default function Error({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   error,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reset,
 }: {
   error: Error & { digest?: string }

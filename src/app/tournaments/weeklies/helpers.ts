@@ -107,7 +107,9 @@ export const createTableData = (
     })
 
     // sort rounds by points
-    entry.round_scores.sort((a: any, b: any) => b.points - a.points)
+    entry.round_scores.sort(
+      (a: { points: number }, b: { points: number }) => b.points - a.points,
+    )
 
     let total = 0
     // mark the significant rounds as "significant", and add the total
@@ -127,7 +129,9 @@ export const createTableData = (
   })
 
   // Sort by total
-  result.sort((a: any, b: any) => b.total - a.total)
+  result.sort(
+    (a: PlayerEntry, b: PlayerEntry) => (b?.total ?? 0) - (a?.total ?? 0),
+  )
 
   // calculate the player's rank
   let currentRank = 1

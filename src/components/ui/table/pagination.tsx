@@ -3,8 +3,6 @@ import {
   ChevronLastIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  MoveLeftIcon,
-  MoveRightIcon,
 } from 'lucide-react'
 import { Table } from '@tanstack/react-table'
 
