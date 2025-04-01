@@ -1,18 +1,19 @@
-import { Posts } from "@/components/Posts";
-import { sanityFetch } from "@/sanity/lib/client";
-import { POSTS_QUERY } from "@/sanity/lib/queries";
+import { Post } from "@/components/Post";
+import { getPosts } from "@/server/queries";
 import React from "react";
 
 export default async function page() {
-  const result = await sanityFetch({
-    query: POSTS_QUERY,
-  });
+  const posts = await getPosts();
 
-  console.log(result);
+  // console.log(posts);
 
   return (
-    <div>
-      <Posts posts={result} />
+    <div className="flex flex-col items-center p-4">
+      <div className="flex w-full max-w-7xl flex-col items-center gap-4">
+        {posts.map((post) => (
+          <Post key={post._id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

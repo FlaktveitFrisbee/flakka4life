@@ -3,7 +3,13 @@
 import { defineQuery } from "next-sanity";
 
 export const POSTS_QUERY = defineQuery(
-  `*[_type == "post" && defined(slug.current)][0...12]`,
+  `*[_type == "post" && defined(slug.current)][0...12] {
+  title,
+  slug,
+  publishedAt,
+  body,
+  _id
+  }`,
 );
 
 export const POST_QUERY =

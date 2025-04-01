@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const navigation = [
+  { href: "/", label: "Hjem" },
   { href: "/about", label: "Om oss" },
   { href: "/posts", label: "Innlegg" },
   { href: "/course", label: "Banen" },
