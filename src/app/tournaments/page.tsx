@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function Speaking() {
   return (
-    <SimpleLayout title="Turneringer" intro="Denne siden er under utbygging.">
+    <SimpleLayout title="Turneringer" intro="">
       <div className="space-y-20">
         <Button href="/tournaments/weeklies/2874902">
           Flakkacup leaderboard

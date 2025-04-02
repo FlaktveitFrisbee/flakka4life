@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { FacebookIcon, InstagramIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/photos/trip.jpg'
-
+import { DiscordLogoIcon } from '@radix-ui/react-icons'
 function SocialLink({
   className,
   href,
@@ -66,7 +66,16 @@ export default function About() {
             Flaktveit Frisbeegolf
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-            <p>Denne siden er under utbygging.</p>
+            <p>Flaktveit Frisbeegolf ble en del av FIK i 2016 med en 9-hullsbane i Flaktveitparken og rundt Breimyra fotballbane. Året etter ble banen utvidet til en 18-hullsbane, hvor de 9 siste hullene er rundt Breimyra Ungdomsskole og Flaktveit stadion. Banen er gratis å spille på og i daglig bruk av medlemmer og tilreisende.</p>
+            <p>Frisbeegolf er et lavterskeltilbud som passer store og små, og vi i klubben har barn og unge som satsningsområde. Ønsker du å bli medlem er det gjort på et par tastetrykk inne på denne nettsiden.</p>
+            <p>
+              <Link 
+                href="/membership" 
+                className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 transition hover:bg-teal-200 dark:bg-teal-800 dark:text-teal-100 dark:hover:bg-teal-700"
+              >
+                Bli Medlem
+              </Link>
+            </p>
           </div>
         </div>
         <div className="lg:pl-20">
@@ -75,14 +84,21 @@ export default function About() {
               href="https://www.facebook.com/groups/1691012384470516 "
               icon={FacebookIcon}
             >
-              Følg på Facebook
+              Følg oss på Facebook
             </SocialLink>
             <SocialLink
               href="https://www.instagram.com/flaktveitfrisbee/"
               icon={InstagramIcon}
               className="mt-4"
             >
-              Følg på Instagram
+              Følg oss på Instagram
+            </SocialLink>
+            <SocialLink
+              href="https://discord.gg/fRQHEmvB2m"
+              icon={DiscordLogoIcon}
+              className="mt-4"
+            >
+              Bli med på Discord
             </SocialLink>
             <SocialLink
               href="mailto:frisbee@flatkveitik.no"
@@ -92,6 +108,26 @@ export default function About() {
               frisbee@flatkveitik.no
             </SocialLink>
           </ul>
+          
+          {/* Donation Poster */}
+          <div className="mt-10 border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
+            <div className="rounded-xl bg-teal-50 p-6 dark:bg-teal-900/30">
+              <h2 className="text-xl font-bold text-teal-700 dark:text-teal-300">
+                Støtt vårt lokale frisbeefelleskap!
+              </h2>
+              <div className="mt-3 space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
+                <p>Vi inviterer deg til å være med på å styrke vårt frisbeemiljø.</p>
+                <p>Banen er åpen for alle, og din frivillige donasjon vil hjelpe oss med å opprettholde og forbedre fasilitetene for hele lokalsamfunnet.</p>
+                <p>Sammen skaper vi en trygg og inkluderende arena for aktivitet, glede og fellesskap.</p>
+                <p className="font-medium text-teal-700 dark:text-teal-300">Tusen takk for at du er med på laget!</p>
+              </div>
+              <div className="mt-4">
+                <div className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 dark:bg-teal-800 dark:text-teal-100">
+                  Vipps: #586158
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
