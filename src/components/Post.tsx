@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 import { POSTS_QUERYResult } from "../../sanity.types";
 import SanityImage from "./SanityImage";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 
@@ -21,13 +21,13 @@ export function Post({
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (contentRef.current) {
-      const height = contentRef.current.scrollHeight;
+  const measureContent = (element: HTMLDivElement | null) => {
+    if (element) {
+      const height = element.scrollHeight;
       setContentHeight(height);
       setShouldShowExpand(height > 300);
     }
-  }, [body]);
+  };
 
   return (
     <Card className={cn("w-full max-w-prose", className)}>
@@ -49,9 +49,12 @@ export function Post({
         ) : null}
       </CardHeader>
       <CardContent className="prose prose-sm dark:prose-invert sm:prose lg:prose-lg w-full">
-        <div className="relative">
+        <div className="relative pb-6">
           <div
-            ref={contentRef}
+            ref={(el) => {
+              contentRef.current = el;
+              measureContent(el);
+            }}
             style={{
               maxHeight: isExpanded ? `${contentHeight}px` : "300px",
               transition: "max-height 500ms ease-in-out",
@@ -71,28 +74,28 @@ export function Post({
               ) : null}
             </div>
           </div>
-          {shouldShowExpand && !isExpanded && (
-            <div
-              className="pointer-events-none absolute right-0 bottom-0 left-0 h-24 bg-gradient-to-t from-white to-white/0 dark:from-zinc-950 dark:to-zinc-950/0"
-              style={{
-                transition: "opacity 200ms ease-in-out",
-                opacity: isExpanded ? 0 : 1,
-              }}
-            />
-          )}
           {shouldShowExpand && (
             <button
-              className={cn(
-                "absolute -bottom-4 left-1/2 -translate-x-1/2 transform rounded-full bg-zinc-100 p-2 shadow-md transition-all hover:cursor-pointer hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700",
-                !isExpanded && "hover:translate-y-0.5",
-              )}
               onClick={() => setIsExpanded(!isExpanded)}
-            >
-              {isExpanded ? (
-                <ChevronUp className="h-4 w-4" />
-              ) : (
-                <ChevronDown className="h-4 w-4" />
+              className={cn(
+                "group absolute right-0 -bottom-3 left-0 -mx-6 flex flex-col items-center transition-all duration-200",
+                isExpanded
+                  ? "pointer-events-none opacity-0"
+                  : "opacity-100 hover:opacity-90",
               )}
+            >
+              <div className="h-24 w-full rounded-b-xl bg-gradient-to-t from-white via-white/80 to-transparent dark:from-zinc-950 dark:via-zinc-950/80 dark:to-transparent" />
+              <div className="-mt-12 rounded-full bg-zinc-100 p-2 shadow-md transition-all group-hover:translate-y-0.5 group-hover:bg-zinc-200 dark:bg-zinc-800 dark:group-hover:bg-zinc-700">
+                <ChevronDown className="size-5" />
+              </div>
+            </button>
+          )}
+          {shouldShowExpand && isExpanded && (
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 transform rounded-full bg-zinc-100 p-2 shadow-md transition-all hover:translate-y-0.5 hover:cursor-pointer hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
+            >
+              <ChevronUp className="size-5" />
             </button>
           )}
         </div>

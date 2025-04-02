@@ -30,7 +30,6 @@ export async function sanityFetch<const QueryString extends string>({
   tags?: string[];
 }) {
   const isDraftMode = (await draftMode()).isEnabled;
-  console.log("isDraftMode", isDraftMode);
   if (isDraftMode && !token) {
     throw new Error("Missing environment variable SANITY_API_READ_TOKEN");
   }
@@ -39,7 +38,6 @@ export async function sanityFetch<const QueryString extends string>({
   let maybeRevalidate = revalidate;
 
   if (isDraftMode) {
-    console.log("isDraftMode", isDraftMode);
     queryOptions.token = token;
     queryOptions.perspective = "previewDrafts";
     queryOptions.stega = true;

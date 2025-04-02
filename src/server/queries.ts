@@ -33,7 +33,7 @@ export async function getCompetition(competitionId: string) {
 export async function getPosts() {
   const posts = await sanityFetch({
     query: POSTS_QUERY,
-    tags: ["posts"],
+    tags: ["post"],
   });
   return posts;
 }
