@@ -93,7 +93,7 @@ export function Post({
           {shouldShowExpand && isExpanded && (
             <button
               onClick={() => setIsExpanded(false)}
-              className="absolute -bottom-3 left-1/2 -translate-x-1/2 transform rounded-full bg-zinc-100 p-2 shadow-md transition-all hover:translate-y-0.5 hover:cursor-pointer hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 transform rounded-full bg-zinc-100 p-2 shadow-md transition-all hover:translate-y-0.5 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
             >
               <ChevronUp className="size-5" />
             </button>
