@@ -32,6 +32,20 @@ pnpm dev
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
+## Changes to sanity schema
+
+When you make changes to the Sanity schema or queries, you'll need to regenerate the TypeScript types. Run:
+
+```bash
+pnpm dlx sanity@latest schema extract
+```
+
+```bash
+pnpm dlx sanity@latest typegen generate
+```
+
+This will update the types in `sanity.types.ts` to match your current schema. Make sure to commit these changes to git.
+
 ## Learn more
 
 To learn more about the technologies used in this site template, see the following resources:

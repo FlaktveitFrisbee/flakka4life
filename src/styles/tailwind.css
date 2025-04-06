@@ -1,5 +1,5 @@
-@import './prism.css' layer(base);
-@import 'tailwindcss';
+@import "./prism.css" layer(base);
+@import "tailwindcss";
 
 @config '../../tailwind.config.ts';
 
@@ -35,6 +35,13 @@
 @layer base {
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  button:not([disabled]),
+  [role="button"]:not([disabled]) {
+    cursor: pointer;
   }
 }
 

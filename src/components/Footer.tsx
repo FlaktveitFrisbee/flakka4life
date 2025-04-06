@@ -1,14 +1,14 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-import { ContainerInner, ContainerOuter } from '@/components/Container'
-import { navigation } from './Layout'
+import { ContainerInner, ContainerOuter } from "@/components/Container";
+import { navigation } from "@/lib/utils";
 
 function NavLink({
   href,
   children,
 }: {
-  href: string
-  children: React.ReactNode
+  href: string;
+  children: React.ReactNode;
 }) {
   return (
     <Link
@@ -17,14 +17,14 @@ function NavLink({
     >
       {children}
     </Link>
-  )
+  );
 }
 
 export function Footer() {
   return (
     <footer className="mt-32 flex-none">
       <ContainerOuter>
-        <div className="border-t border-amber-400 pb-16 pt-10 dark:border-amber-400/40">
+        <div className="border-t border-amber-400 pt-10 pb-16 dark:border-amber-400/40">
           <ContainerInner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
@@ -43,5 +43,5 @@ export function Footer() {
         </div>
       </ContainerOuter>
     </footer>
-  )
+  );
 }
