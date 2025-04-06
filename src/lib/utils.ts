@@ -11,5 +11,5 @@ export const navigation = [
   { href: "/posts", label: "Innlegg" },
   { href: "/course", label: "Banen" },
   { href: "/membership", label: "Bli medlem" },
-  { href: "/tournaments", label: "Turneringer" },
+  { href: "/flakkacup", label: "Flakkacup" },
 ];
