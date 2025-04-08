@@ -1,38 +1,38 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import clsx from 'clsx'
+import Image from "next/image";
+import Link from "next/link";
+import clsx from "clsx";
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { FacebookIcon, InstagramIcon } from '@/components/SocialIcons'
-import image1 from '@/images/photos/01.jpg'
-import image2 from '@/images/photos/02.jpg'
-import image3 from '@/images/photos/03.jpg'
-import image4 from '@/images/photos/04.jpg'
-import image5 from '@/images/photos/05.jpg'
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/Container";
+import { FacebookIcon, InstagramIcon } from "@/components/SocialIcons";
+import image1 from "@/images/photos/01.jpg";
+import image2 from "@/images/photos/02.jpg";
+import image3 from "@/images/photos/03.jpg";
+import image4 from "@/images/photos/04.jpg";
+import image5 from "@/images/photos/05.jpg";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 function SocialLink({
   icon: Icon,
   ...props
 }: React.ComponentPropsWithoutRef<typeof Link> & {
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string }>;
 }) {
   return (
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
-  )
+  );
 }
 
 function Photos() {
   const rotations = [
-    'rotate-2',
-    '-rotate-2',
-    'rotate-2',
-    'rotate-2',
-    '-rotate-2',
-  ]
+    "rotate-2",
+    "-rotate-2",
+    "rotate-2",
+    "rotate-2",
+    "-rotate-2",
+  ];
 
   return (
     <ScrollArea className="pt-8">
@@ -43,7 +43,7 @@ function Photos() {
             <div
               key={image.src}
               className={clsx(
-                'relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl border border-amber-400 bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
+                "relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl border border-amber-400 bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800",
                 rotations[imageIndex % rotations.length],
               )}
             >
@@ -58,7 +58,7 @@ function Photos() {
       </div>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
-  )
+  );
 }
 
 export default async function Home() {
@@ -92,7 +92,9 @@ export default async function Home() {
       </Container>
       <Photos />
       <div className="m-4 mx-auto flex w-full flex-row items-center justify-center gap-4">
-        <Button href="/membership">Bli medlem!</Button>
+        <Button asChild>
+          <Link href="/membership">Bli medlem!</Link>
+        </Button>
       </div>
       <Container className="pt-16 md:pt-20">
         <h2 className="pb-8 text-3xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
@@ -108,5 +110,5 @@ export default async function Home() {
         </div>
       </Container>
     </>
-  )
+  );
 }

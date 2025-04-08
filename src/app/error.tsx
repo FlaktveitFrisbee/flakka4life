@@ -1,7 +1,7 @@
-'use client'
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-
+"use client";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/Container";
+import Link from "next/link";
 // Error boundaries must be Client Components
 
 export default function Error({
@@ -10,8 +10,8 @@ export default function Error({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   //   useEffect(() => {
   //     // Log the error to an error reporting service
@@ -27,10 +27,10 @@ export default function Error({
         <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
           Det oppstod en feil. Prøv igjen senere.
         </p>
-        <Button href="/" variant="secondary" className="mt-4">
-          Gå tilbake til startsiden
+        <Button asChild>
+          <Link href="/">Gå tilbake til startsiden</Link>
         </Button>
       </div>
     </Container>
-  )
+  );
 }
