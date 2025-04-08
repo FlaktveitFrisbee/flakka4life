@@ -15,7 +15,7 @@ export default function VippsButton(props: {
 }
 
 // Copied from Vipps Figma https://www.figma.com/community/file/1240264703803071832
-const VippsDonateIcon = () => (
+export const VippsDonateIcon = () => (
   <svg
     width="300"
     height="44"
