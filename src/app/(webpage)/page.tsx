@@ -2,29 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/Container";
-import { FacebookIcon, InstagramIcon } from "@/components/SocialIcons";
+import { FaFacebook, FaInstagram, FaDiscord } from "react-icons/fa";
 import image1 from "@/images/photos/01.jpg";
 import image2 from "@/images/photos/02.jpg";
 import image3 from "@/images/photos/03.jpg";
 import image4 from "@/images/photos/04.jpg";
 import image5 from "@/images/photos/05.jpg";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-
-function SocialLink({
-  icon: Icon,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Link> & {
-  icon: React.ComponentType<{ className?: string }>;
-}) {
-  return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Link>
-  );
-}
-
+import SocialLink from "@/components/SocialLink";
+import { Button } from "@/components/ui/button";
 function Photos() {
   const rotations = [
     "rotate-2",
@@ -43,7 +30,7 @@ function Photos() {
             <div
               key={image.src}
               className={clsx(
-                "relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl border border-amber-400 bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800",
+                "relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800",
                 rotations[imageIndex % rotations.length],
               )}
             >
@@ -77,15 +64,19 @@ export default async function Home() {
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="#"
-              aria-label="Følg oss på Insta"
-              icon={InstagramIcon}
+              href="https://www.facebook.com/groups/1691012384470516"
+              aria-label="Følg oss på Facebook"
+              icon={FaFacebook}
             />
             <SocialLink
-              href="#"
-              aria-label="Join oss på Facebook"
-              className="fill-zinc-600"
-              icon={FacebookIcon}
+              href="https://www.instagram.com/flaktveitfrisbee/"
+              aria-label="Følg oss på Instagram"
+              icon={FaInstagram}
+            />
+            <SocialLink
+              href="https://discord.gg/fRQHEmvB2m"
+              aria-label="Bli med på Discord"
+              icon={FaDiscord}
             />
           </div>
         </div>
@@ -93,7 +84,7 @@ export default async function Home() {
       <Photos />
       <div className="m-4 mx-auto flex w-full flex-row items-center justify-center gap-4">
         <Button asChild>
-          <Link href="/membership">Bli medlem!</Link>
+          <Link href="/membership">Bli medlem</Link>
         </Button>
       </div>
       <Container className="pt-16 md:pt-20">

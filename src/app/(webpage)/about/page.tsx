@@ -1,13 +1,12 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
 
 import { Container } from "@/components/Container";
-import { FacebookIcon, InstagramIcon } from "@/components/SocialIcons";
 import portraitImage from "@/images/photos/trip.jpg";
+import antidopingImage from "@/images/Antidoping.png";
 import VippsButton, { VippsDonateIcon } from "@/components/VippsButton";
-import { DiscordLogoIcon } from "@radix-ui/react-icons";
+import { FaFacebook, FaInstagram, FaDiscord, FaEnvelope } from "react-icons/fa";
 import qrCodeImage from "@/images/QR_GreenFee.png";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,41 +19,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-function SocialLink({
-  className,
-  href,
-  children,
-  icon: Icon,
-}: {
-  className?: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-  children: React.ReactNode;
-}) {
-  return (
-    <li className={clsx(className, "flex")}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  );
-}
-
-function MailIcon(props: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-      />
-    </svg>
-  );
-}
+import SocialLink from "@/components/SocialLink";
 
 export const metadata: Metadata = {
   title: "Flaktveit Frisbeegolf",
@@ -92,41 +57,66 @@ export default function About() {
               i klubben har barn og unge som satsningsområde. Ønsker du å bli
               medlem er det gjort på et par tastetrykk inne på denne nettsiden.
             </p>
-            <p>
-              <Link
-                href="/membership"
-                className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 transition hover:bg-teal-200 dark:bg-teal-800 dark:text-teal-100 dark:hover:bg-teal-700"
-              >
-                Bli Medlem
-              </Link>
-            </p>
+            <Button asChild>
+              <Link href="/membership">Bli medlem</Link>
+            </Button>
+
+            {/* Simple Antidoping section */}
+            <div className="mt-10 border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
+              <div className="flex flex-col">
+                <div className="mb-4 w-40">
+                  <Image
+                    src={antidopingImage}
+                    alt="Rent Idrettslag logo"
+                    width={175}
+                    height={175}
+                  />
+                </div>
+                <div>
+                  <h2 className="mb-3 text-xl font-bold text-zinc-800 dark:text-zinc-100">
+                    Vi er sertifisert som Rent Idrettslag i Mars 2025
+                  </h2>
+                  <p className="mb-4">
+                    Som rent idrettslag har vi et særskilt ansvar for å spre
+                    gode holdninger og kunnskap om antidoping gjennom klare mål
+                    og handlinger. Sammen tar vi ansvar for idrettsklubbens
+                    holdningsskapende arbeid gjennom følgende handlingsplan:
+                  </p>
+                  <ol className="ml-5 list-decimal space-y-1">
+                    <li>HENGE OPP RENT IL-PLAKAT I LOKALENE</li>
+                    <li>PUBLISER INFORMASJON PÅ NETTSIDE/SOSIALE MEDIER</li>
+                    <li>GJENNOMFØRE REN UTØVER</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
             <SocialLink
-              href="https://www.facebook.com/groups/1691012384470516 "
-              icon={FacebookIcon}
+              href="https://www.facebook.com/groups/1691012384470516"
+              icon={FaFacebook}
             >
               Følg oss på Facebook
             </SocialLink>
             <SocialLink
               href="https://www.instagram.com/flaktveitfrisbee/"
-              icon={InstagramIcon}
+              icon={FaInstagram}
               className="mt-4"
             >
               Følg oss på Instagram
             </SocialLink>
             <SocialLink
               href="https://discord.gg/fRQHEmvB2m"
-              icon={DiscordLogoIcon}
+              icon={FaDiscord}
               className="mt-4"
             >
               Bli med på Discord
             </SocialLink>
             <SocialLink
               href="mailto:frisbee@flatkveitik.no"
-              icon={MailIcon}
+              icon={FaEnvelope}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
               frisbee@flatkveitik.no
