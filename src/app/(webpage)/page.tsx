@@ -10,31 +10,7 @@ import image3 from "@/images/photos/03.jpg";
 import image4 from "@/images/photos/04.jpg";
 import image5 from "@/images/photos/05.jpg";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-
-function SocialLink({
-  className,
-  href,
-  children,
-  icon: Icon,
-}: {
-  className?: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-  children: React.ReactNode;
-}) {
-  return (
-    <li className={clsx(className, "flex")}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  );
-}
-
+import SocialLink from "@/components/SocialLink";
 function Photos() {
   const rotations = [
     "rotate-2",

@@ -1,7 +1,6 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
 
 import { Container } from "@/components/Container";
 import portraitImage from "@/images/photos/trip.jpg";
@@ -20,30 +19,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-function SocialLink({
-  className,
-  href,
-  children,
-  icon: Icon,
-}: {
-  className?: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-  children: React.ReactNode;
-}) {
-  return (
-    <li className={clsx(className, "flex")}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  );
-}
+import SocialLink from "@/components/SocialLink";
 
 export const metadata: Metadata = {
   title: "Flaktveit Frisbeegolf",
@@ -106,7 +82,10 @@ export default function About() {
                     Vi er sertifisert som Rent Idrettslag i Mars 2025
                   </h2>
                   <p className="mb-4">
-                    Som rent idrettslag har vi et særskilt ansvar for å spre gode holdninger og kunnskap om antidoping gjennom klare mål og handlinger. Sammen tar vi ansvar for idrettsklubbens holdningsskapende arbeid gjennom følgende handlingsplan:
+                    Som rent idrettslag har vi et særskilt ansvar for å spre
+                    gode holdninger og kunnskap om antidoping gjennom klare mål
+                    og handlinger. Sammen tar vi ansvar for idrettsklubbens
+                    holdningsskapende arbeid gjennom følgende handlingsplan:
                   </p>
                   <ol className="ml-5 list-decimal space-y-1">
                     <li>HENGE OPP RENT IL-PLAKAT I LOKALENE</li>

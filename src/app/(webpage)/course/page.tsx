@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { SimpleLayout } from "@/components/SimpleLayout";
 import banekartImage from "@/images/Banekart.png";
 
@@ -12,9 +11,12 @@ export const metadata: Metadata = {
 export default function Projects() {
   const caddieBookPdfUrl =
     "https://cdn.sanity.io/files/iy9nrfxf/production/d447095d380b94887f6cac9f00b06b0d8bc899e2.pdf";
-  
+
   return (
-    <SimpleLayout title="Flaktveit DiscGolfPark" intro="I 2016 kom banen til liv med en 9-hullsbane i Flaktveitparken og rundt Breimyra fotballbane. Året etter ble banen utvidet til en 18-hullsbane, hvor de 9 siste hullene er rundt Breimyra Ungdomsskole og Flaktveit stadion. I 2025 startet vi arbeidet med nye hull ovenfor Flaktveit stadion. Mer informasjon om disse kommer.">
+    <SimpleLayout
+      title="Flaktveit DiscGolfPark"
+      intro="I 2016 kom banen til liv med en 9-hullsbane i Flaktveitparken og rundt Breimyra fotballbane. Året etter ble banen utvidet til en 18-hullsbane, hvor de 9 siste hullene er rundt Breimyra Ungdomsskole og Flaktveit stadion. I 2025 startet vi arbeidet med nye hull ovenfor Flaktveit stadion. Mer informasjon om disse kommer."
+    >
       <div className="flex flex-col gap-y-8">
         {/* Buttons with consistent styling */}
         <div className="flex flex-wrap gap-4">
@@ -26,7 +28,7 @@ export default function Projects() {
           >
             Banen på UDisc
           </a>
-          
+
           <a
             href={caddieBookPdfUrl}
             target="_blank"
@@ -36,7 +38,7 @@ export default function Projects() {
             Last ned banekart
           </a>
         </div>
-        
+
         {/* Course map image */}
         <div className="mt-8 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800">
           <Image
@@ -47,15 +49,13 @@ export default function Projects() {
             height={800}
           />
         </div>
-        
+
         {/* Additional information section */}
-        <div className="mt-8 prose prose-zinc dark:prose-invert">
+        <div className="prose prose-zinc dark:prose-invert mt-8">
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
             Spilleregler
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Under utbygging.
-          </p>
+          <p className="text-zinc-600 dark:text-zinc-400">Under utbygging.</p>
         </div>
       </div>
     </SimpleLayout>
