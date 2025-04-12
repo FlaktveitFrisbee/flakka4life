@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 import { SimpleLayout } from "@/components/SimpleLayout";
+import { Button } from "@/components/ui/button";
 import banekartImage from "@/images/Banekart.png";
 
 export const metadata: Metadata = {
@@ -13,30 +14,27 @@ export default function Projects() {
     "https://cdn.sanity.io/files/iy9nrfxf/production/d447095d380b94887f6cac9f00b06b0d8bc899e2.pdf";
 
   return (
-    <SimpleLayout
-      title="Flaktveit DiscGolfPark"
-      intro="I 2016 kom banen til liv med en 9-hullsbane i Flaktveitparken og rundt Breimyra fotballbane. Året etter ble banen utvidet til en 18-hullsbane, hvor de 9 siste hullene er rundt Breimyra Ungdomsskole og Flaktveit stadion. I 2025 startet vi arbeidet med nye hull ovenfor Flaktveit stadion. Mer informasjon om disse kommer."
-    >
-      <div className="flex flex-col gap-y-8">
-        {/* Buttons with consistent styling */}
-        <div className="flex flex-wrap gap-4">
+    <SimpleLayout title="Flaktveit DiscGolfPark" intro="I 2016 kom banen til liv med en 9-hullsbane i Flaktveitparken og rundt Breimyra fotballbane. Året etter ble banen utvidet til en 18-hullsbane, hvor de 9 siste hullene er rundt Breimyra Ungdomsskole og Flaktveit stadion. I 2025 startet vi arbeidet med nye hull ovenfor Flaktveit stadion. Mer informasjon om disse kommer.">
+    <div className="flex flex-col gap-y-16">
+      <div className="flex flex-row gap-x-16">
+        <Button variant="default" asChild>
           <a
             href="https://udisc.com/courses/flaktveit-disk-golf-park-8viX"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 transition hover:bg-teal-200 dark:bg-teal-800 dark:text-teal-100 dark:hover:bg-teal-700"
           >
             Banen på UDisc
           </a>
-
+        </Button>
+        <Button asChild>
           <a
             href={caddieBookPdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 transition hover:bg-teal-200 dark:bg-teal-800 dark:text-teal-100 dark:hover:bg-teal-700"
           >
             Last ned banekart
           </a>
+        </Button>
         </div>
 
         {/* Course map image */}

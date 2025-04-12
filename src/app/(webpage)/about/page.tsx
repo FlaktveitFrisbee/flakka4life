@@ -57,14 +57,9 @@ export default function About() {
               i klubben har barn og unge som satsningsområde. Ønsker du å bli
               medlem er det gjort på et par tastetrykk inne på denne nettsiden.
             </p>
-            <p>
-              <Link
-                href="/membership"
-                className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 transition hover:bg-teal-200 dark:bg-teal-800 dark:text-teal-100 dark:hover:bg-teal-700"
-              >
-                Bli Medlem
-              </Link>
-            </p>
+            <Button asChild>
+              <Link href="/membership">Bli medlem</Link>
+            </Button>
 
             {/* Simple Antidoping section */}
             <div className="mt-10 border-t border-zinc-100 pt-10 dark:border-zinc-700/40">

@@ -11,6 +11,7 @@ import image4 from "@/images/photos/04.jpg";
 import image5 from "@/images/photos/05.jpg";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import SocialLink from "@/components/SocialLink";
+import { Button } from "@/components/ui/button";
 function Photos() {
   const rotations = [
     "rotate-2",
@@ -82,14 +83,9 @@ export default async function Home() {
       </Container>
       <Photos />
       <div className="m-4 mx-auto flex w-full flex-row items-center justify-center gap-4">
-        <p>
-          <Link
-            href="/membership"
-            className="inline-flex items-center rounded-md bg-teal-100 px-4 py-2 text-base font-medium text-teal-800 transition hover:bg-teal-200 dark:bg-teal-800 dark:text-teal-100 dark:hover:bg-teal-700"
-          >
-            Bli Medlem
-          </Link>
-        </p>
+        <Button asChild>
+          <Link href="/membership">Bli medlem</Link>
+        </Button>
       </div>
       <Container className="pt-16 md:pt-20">
         <h2 className="pb-8 text-3xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">

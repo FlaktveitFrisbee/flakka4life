@@ -11,7 +11,6 @@ export default function SubmitButton(props: {
   return (
     <Button 
       disabled={pending}
-      variant="teal"
     >
       {pending ? props.pendingContent : props.defaultContent}
     </Button>
