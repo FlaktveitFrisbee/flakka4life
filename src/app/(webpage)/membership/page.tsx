@@ -14,7 +14,7 @@ export default function MembershipPage() {
       title="Bli medlem i klubben!"
       intro="Fyll ut skjemaet for å bli med i Flaktveit Frisbeegolf."
     >
-      <div className="flex justify-center">
+      <div className="flex">
         <SignupForm />
       </div>
     </SimpleLayout>
