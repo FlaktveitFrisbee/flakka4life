@@ -1,12 +1,12 @@
-import { type Metadata } from 'next'
+import { type Metadata } from "next";
 
-import { SimpleLayout } from '@/components/SimpleLayout'
-import SignupForm from './signup-form'
+import { SimpleLayout } from "@/components/SimpleLayout";
+import SignupForm from "./signup-form";
 
 export const metadata: Metadata = {
-  title: 'Bli medlem i klubben',
-  description: 'Fyll ut skjemaet for å bli med i Flaktveit Frisbeegolf.',
-}
+  title: "Bli medlem i klubben",
+  description: "Fyll ut skjemaet for å bli med i Flaktveit Frisbeegolf.",
+};
 
 export default function MembershipPage() {
   return (
@@ -18,5 +18,5 @@ export default function MembershipPage() {
         <SignupForm />
       </div>
     </SimpleLayout>
-  )
+  );
 }
