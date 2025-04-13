@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+.pnpm-store
+pnpm-lock.yaml
+
+# Next.js
+.next
+out
+
+# Build output
+dist
+build
+
+# Cache
+.cache
+.npm
+.eslintcache
+
+# Misc
+.DS_Store
+*.pem
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Sanity Studio
+sanity.types.ts
