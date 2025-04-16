@@ -6,72 +6,54 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
-  Popover,
-  PopoverButton,
-  PopoverBackdrop,
-  PopoverPanel,
-} from "@headlessui/react";
-import clsx from "clsx";
-
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogOverlay,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Container } from "@/components/Container";
 import avatarImage from "@/images/flaktveit-frisbeegolf-logo.png";
-import { navigation } from "@/lib/utils";
+import { cn, navigation } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { ChevronDownIcon, MoonStarIcon, SunIcon, XIcon } from "lucide-react";
-
-function MobileNavItem({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <li>
-      <PopoverButton as={Link} href={href} className="block py-2">
-        {children}
-      </PopoverButton>
-    </li>
-  );
-}
+import { ChevronDownIcon, MoonStarIcon, SunIcon } from "lucide-react";
 
 function MobileNavigation(
-  props: React.ComponentPropsWithoutRef<typeof Popover>,
+  props: React.ComponentPropsWithoutRef<typeof DialogTrigger>,
 ) {
   return (
-    <Popover {...props}>
-      <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
-      </PopoverButton>
-      <PopoverBackdrop
-        transition
-        className="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-xs duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-black/80"
-      />
-      <PopoverPanel
-        focus
-        transition
-        className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-zinc-900 dark:ring-zinc-800"
-      >
-        <div className="flex flex-row-reverse items-center justify-between">
-          <PopoverButton aria-label="Close menu" className="-m-1 p-1">
-            <XIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
-          </PopoverButton>
-          <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+    <Dialog>
+      <DialogOverlay className="bg-background/50 backdrop-blur-xs" />
+      <DialogTrigger {...props} asChild>
+        <Button
+          variant={"ghost"}
+          className="rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+        >
+          Meny
+          <ChevronDownIcon className="text-muted-foreground size-2.5" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="text-muted-foreground fixed top-8 translate-y-0 rounded-3xl bg-white p-8 pt-4 ring-1 ring-zinc-900/5 duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-zinc-900 dark:ring-zinc-800">
+        <DialogHeader>
+          <DialogTitle className="text-muted-foreground text-left text-sm">
             Navigasjon
-          </h2>
-        </div>
-        <nav className="mt-6">
-          <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
+          </DialogTitle>
+        </DialogHeader>
+        <nav>
+          <ul className="flex flex-col divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
             {navigation.map((item) => (
-              <MobileNavItem key={item.href} href={item.href}>
-                {item.label}
-              </MobileNavItem>
+              <DialogClose asChild key={item.href}>
+                <Link className="py-2" href={item.href}>
+                  {item.label}
+                </Link>
+              </DialogClose>
             ))}
           </ul>
         </nav>
-      </PopoverPanel>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -88,7 +70,7 @@ function NavItem({
     <li>
       <Link
         href={href}
-        className={clsx(
+        className={cn(
           "relative block px-3 py-2 transition",
           isActive
             ? "text-teal-500 dark:text-teal-400"
@@ -149,7 +131,7 @@ function AvatarContainer({
 }: React.ComponentPropsWithoutRef<"div">) {
   return (
     <div
-      className={clsx(
+      className={cn(
         className,
         "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10",
       )}
@@ -169,14 +151,14 @@ function Avatar({
     <Link
       href="/"
       aria-label="Home"
-      className={clsx(className, "pointer-events-auto")}
+      className={cn(className, "pointer-events-auto")}
       {...props}
     >
       <Image
         src={avatarImage}
         alt="Flaktveit frisbeegolfklubb logo"
         sizes={large ? "4rem" : "2.25rem"}
-        className={clsx(
+        className={cn(
           "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
           large ? "h-16 w-16" : "h-9 w-9",
         )}
