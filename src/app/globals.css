@@ -24,23 +24,6 @@
   }
 }
 
-/* @layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #27272a;
-  }
-  .dark {
-    --background: #000000;
-    --foreground: #f4f4f5;
-  }
-} */
-
-/* @layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-} */
-
 @layer base {
   button:not([disabled]),
   [role="button"]:not([disabled]) {
