@@ -38,3 +38,7 @@ yarn-error.log*
 
 # Sanity Studio
 sanity.types.ts
+
+# Shadcn
+components.json
+src/components/ui/*

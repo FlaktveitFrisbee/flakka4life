@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 
-import "@/styles/tailwind.css";
+import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +27,16 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
-      <body className="min-h-screen bg-zinc-50 dark:bg-black">{children}</body>
+      <body className="min-h-screen bg-zinc-50 dark:bg-black">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
