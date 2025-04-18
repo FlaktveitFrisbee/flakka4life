@@ -34,6 +34,8 @@
     "next": "15.3.0",
     "next-sanity": "^9.10.2",
     "next-themes": "^0.2.1",
+    "posthog-js": "^1.236.2",
+    "posthog-node": "^4.12.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
