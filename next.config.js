@@ -1,6 +1,10 @@
-import type { NextConfig } from "next";
+// This validates the environment variables on build and dev start
+import "./src/env.js";
 
-const nextConfig: NextConfig = {
+// We do not use next.config.ts as it does not currently support loading ESM (https://env.t3.gg/docs/nextjs)
+
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   // experimental: {
   // reactCompiler: true,
   // },

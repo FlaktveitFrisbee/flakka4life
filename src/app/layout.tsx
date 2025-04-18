@@ -1,6 +1,5 @@
+import "@/styles/globals.css";
 import { type Metadata } from "next";
-
-import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PostHogProvider } from "@/components/PostHogProvider";
 
@@ -14,11 +13,6 @@ export const metadata: Metadata = {
   },
   description:
     "Velkommen til den offisielle nettsiden til Flaktveit Frisbeegolf.",
-  alternates: {
-    types: {
-      "application/rss+xml": `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
-    },
-  },
 };
 
 export default async function RootLayout({
