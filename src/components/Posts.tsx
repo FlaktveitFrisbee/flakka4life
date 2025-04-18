@@ -1,6 +1,6 @@
 // src/components/Posts.tsx
 
-import { POSTS_QUERYResult } from "../../sanity.types";
+import type { POSTS_QUERYResult } from "../../sanity.types";
 
 export function Posts({ posts }: { posts: POSTS_QUERYResult }) {
   return (

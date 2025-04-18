@@ -1,4 +1,4 @@
-import { Competition } from "@/lib/types/metrixresult";
+import { type Competition } from "@/lib/types/metrixresult";
 
 export type Weekly = {
   id: string;
@@ -50,7 +50,7 @@ export const getScore = (position: number) => {
     return 0;
   }
 
-  return scoringMap[position];
+  return scoringMap[position] ?? 0;
 };
 
 const scoringMap: { [key: number]: number } = {
@@ -105,7 +105,7 @@ export const createTableData = (
         playerRows[result.UserID] = {};
       }
 
-      playerRows[result.UserID][round.ID] = points;
+      playerRows[result.UserID]![round.ID] = points;
 
       playerIdToName[result.UserID] = result.Name;
     });
@@ -116,7 +116,7 @@ export const createTableData = (
   Object.entries(playerRows).forEach(([playerId, rounds]) => {
     const entry: PlayerEntry = {
       playerId: playerId,
-      name: playerIdToName[playerId],
+      name: playerIdToName[playerId] ?? playerId,
       round_scores: [],
       displayItems: {},
     };
@@ -139,8 +139,10 @@ export const createTableData = (
       i++
     ) {
       const round = entry.round_scores[i];
-      entry.displayItems[round.roundId].significant = true;
-      total += round.points;
+      if (round) {
+        entry.displayItems[round.roundId]!.significant = true;
+        total += round.points;
+      }
     }
 
     entry.total = total;
@@ -159,6 +161,9 @@ export const createTableData = (
 
   for (let i = 0; i < result.length; i++) {
     const player = result[i];
+    if (!player) {
+      continue;
+    }
     const score = player.total;
     if (score !== previousScore) {
       currentRank = i + 1;

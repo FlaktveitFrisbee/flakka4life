@@ -1,17 +1,18 @@
 import "server-only";
-import { Competition, DiscgolfMetrixResult } from "@/lib/types/metrixresult";
+import {
+  type Competition,
+  type DiscgolfMetrixResult,
+} from "@/lib/types/metrixresult";
 import { sanityFetch } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
-
+import { env } from "@/env";
 export async function getCompetition(competitionId: string) {
   const params = new URLSearchParams({
     content: "result",
     id: competitionId,
   });
 
-  const response = await fetch(
-    `${process.env.DISC_GOLF_METRIX_API_URL}?${params}`,
-  );
+  const response = await fetch(`${env.DISC_GOLF_METRIX_API_URL}?${params}`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch competition");

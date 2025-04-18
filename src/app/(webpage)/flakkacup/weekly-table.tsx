@@ -1,14 +1,14 @@
 "use client";
 
 import {
-  Column,
-  ColumnDef,
+  type Column,
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  Row,
-  SortingState,
+  type Row,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import { DataTablePagination } from "@/components/ui/table/pagination";
 import { DataTableColumnHeader } from "@/components/ui/table/sortable-header";
 import React from "react";
-import { Competition } from "@/lib/types/metrixresult";
+import type { Competition } from "@/lib/types/metrixresult";
 import {
   Select,
   SelectValue,
@@ -33,7 +33,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { createTableData, PlayerEntry } from "./helpers";
+import { createTableData, type PlayerEntry } from "./helpers";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -168,7 +168,9 @@ export default function WeeklyTable(props: {
     [competition],
   );
 
-  const [selectedClass, setSelectedClass] = React.useState(uniqueClasses[0]);
+  const [selectedClass, setSelectedClass] = React.useState(
+    uniqueClasses[0] ?? "Standard",
+  );
 
   const tableData = createTableData(
     competition,
@@ -194,8 +196,8 @@ export default function WeeklyTable(props: {
         size: 95,
         cell: ({ row }: { row: Row<PlayerEntry> }) => {
           const isRemoved =
-            !row.original.displayItems[round].significant &&
-            row.original.displayItems[round].points > 0;
+            !row.original.displayItems[round]?.significant &&
+            (row.original.displayItems[round]?.points ?? 0) > 0;
           return (
             <div
               className={cn(
@@ -203,7 +205,7 @@ export default function WeeklyTable(props: {
                 isRemoved && "text-gray-400 italic",
               )}
             >
-              {row.original.displayItems[round].points}
+              {row.original.displayItems[round]?.points ?? 0}
             </div>
           );
         },

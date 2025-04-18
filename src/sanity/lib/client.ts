@@ -2,7 +2,7 @@
 
 import "server-only";
 
-import { createClient, QueryOptions, type QueryParams } from "next-sanity";
+import { createClient, type QueryOptions, type QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 
 import { apiVersion, dataset, projectId } from "../env";

@@ -1,24 +1,16 @@
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
-
+import { env } from "@/env";
 type WebhookPayload = {
   tags: string[];
 };
 
 export async function POST(req: NextRequest) {
   try {
-    if (!process.env.SANITY_REVALIDATE_SECRET) {
-      console.error("Missing environment variable SANITY_REVALIDATE_SECRET");
-      return new Response(
-        "Missing environment variable SANITY_REVALIDATE_SECRET",
-        { status: 500 },
-      );
-    }
-
     const { isValidSignature, body } = await parseBody<WebhookPayload>(
       req,
-      process.env.SANITY_REVALIDATE_SECRET,
+      env.SANITY_REVALIDATE_SECRET,
       true,
     );
     // TODO?: Get post content and create discord and facebook posts
