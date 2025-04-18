@@ -1,7 +1,7 @@
 // src/components/Post.tsx
 "use client";
 import { PortableText } from "next-sanity";
-import { POSTS_QUERYResult } from "../../sanity.types";
+import type { POSTS_QUERYResult } from "../../sanity.types";
 import SanityImage from "./SanityImage";
 import { cn } from "@/lib/utils";
 import { useRef, useState } from "react";

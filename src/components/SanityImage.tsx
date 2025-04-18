@@ -1,5 +1,8 @@
 import { urlFor } from "@/sanity/lib/image";
-import { getImageDimensions, SanityImageSource } from "@sanity/asset-utils";
+import {
+  getImageDimensions,
+  type SanityImageSource,
+} from "@sanity/asset-utils";
 import Image from "next/image";
 import React from "react";
 

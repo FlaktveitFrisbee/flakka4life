@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
-import { currentWeekly, Weekly } from "./helpers";
+import { currentWeekly, type Weekly } from "./helpers";
 
 export default function FlakkacupLinks(props: {
   currentPageWeekly: Weekly;
