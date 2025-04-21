@@ -4,7 +4,7 @@ import {
   type DiscgolfMetrixResult,
 } from "@/lib/types/metrixresult";
 import { sanityFetch } from "@/sanity/lib/client";
-import { POSTS_QUERY } from "@/sanity/lib/queries";
+import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
 import { env } from "@/env";
 export async function getCompetition(competitionId: string) {
   const params = new URLSearchParams({
@@ -37,4 +37,13 @@ export async function getPosts() {
     tags: ["post"],
   });
   return posts;
+}
+
+export async function getPost(slug: string) {
+  const post = await sanityFetch({
+    query: POST_QUERY,
+    params: { slug },
+    tags: [`post:${slug}`],
+  });
+  return post;
 }
