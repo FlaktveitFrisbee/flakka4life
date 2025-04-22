@@ -64,7 +64,8 @@ function NavItem({
   href: string;
   children: React.ReactNode;
 }) {
-  const isActive = usePathname() === href;
+  const pathname = usePathname();
+  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <li>

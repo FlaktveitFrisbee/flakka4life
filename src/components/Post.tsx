@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent, CardHeader } from "./ui/card";
+import Link from "next/link";
 
 export function Post({
   post,
@@ -15,7 +16,7 @@ export function Post({
   post: POSTS_QUERYResult[0];
   className?: string;
 }) {
-  const { title, body, publishedAt } = post || {};
+  const { title, body, publishedAt, slug } = post;
   const [isExpanded, setIsExpanded] = useState(false);
   const [shouldShowExpand, setShouldShowExpand] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
@@ -33,10 +34,15 @@ export function Post({
     <Card className={cn("w-full max-w-prose", className)}>
       <CardHeader>
         {title ? (
-          <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
+          <Link
+            href={`/posts/${slug?.current}`}
+            className="text-2xl font-bold tracking-tight"
+          >
+            {title}
+          </Link>
         ) : null}
         {publishedAt ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-muted-foreground text-sm">
             {new Date(publishedAt).toLocaleString("no-NO", {
               year: "numeric",
               month: "long",
