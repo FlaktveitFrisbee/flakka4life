@@ -267,7 +267,7 @@ export type POSTS_QUERYResult = Array<{
   _id: string;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  title, body, mainImage}
+// Query: *[_type == "post" && slug.current == $slug][0]{  title, body, mainImage, publishedAt}
 export type POST_QUERYResult = {
   title: string | null;
   body: Array<
@@ -304,6 +304,7 @@ export type POST_QUERYResult = {
       }
   > | null;
   mainImage: null;
+  publishedAt: string | null;
 } | null;
 
 // Query TypeMap
@@ -311,6 +312,6 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...12] {\n  title,\n  slug,\n  publishedAt,\n  body,\n  _id\n  }': POSTS_QUERYResult;
-    '*[_type == "post" && slug.current == $slug][0]{\n  title, body, mainImage\n}': POST_QUERYResult;
+    '*[_type == "post" && slug.current == $slug][0]{\n  title, body, mainImage, publishedAt\n}': POST_QUERYResult;
   }
 }
