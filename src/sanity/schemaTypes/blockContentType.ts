@@ -1,6 +1,18 @@
 import { defineType, defineArrayMember } from "sanity";
 import { ImageIcon } from "@sanity/icons";
 
+export type PortableTextBlock = {
+  _type: "block";
+  children?: Array<{
+    marks?: string[];
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+  _key: string;
+};
+
 /**
  * This is the schema type for block content used in the post document type
  * Importing this type into the studio configuration's `schema` property
