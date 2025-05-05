@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import Link from "next/link";
-
+import { unstable_ViewTransition as ViewTransition } from "react";
 export function Post({
   post,
   className,
@@ -34,24 +34,28 @@ export function Post({
     <Card className={cn("w-full max-w-prose", className)}>
       <CardHeader>
         {title ? (
-          <Link
-            href={`/posts/${slug?.current}`}
-            className="text-2xl font-bold tracking-tight"
-          >
-            {title}
-          </Link>
+          <ViewTransition name={`post-title-${slug?.current}`}>
+            <Link
+              href={`/posts/${slug?.current}`}
+              className="text-2xl font-bold tracking-tight"
+            >
+              {title}
+            </Link>
+          </ViewTransition>
         ) : null}
         {publishedAt ? (
-          <p className="text-muted-foreground text-sm">
-            {new Date(publishedAt).toLocaleString("no-NO", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              timeZone: "Europe/Oslo",
-            })}
-          </p>
+          <ViewTransition name={`post-published-at-${slug?.current}`}>
+            <p className="text-muted-foreground text-sm">
+              {new Date(publishedAt).toLocaleString("no-NO", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "Europe/Oslo",
+              })}
+            </p>
+          </ViewTransition>
         ) : null}
       </CardHeader>
       <CardContent className="prose prose-sm dark:prose-invert sm:prose lg:prose-lg w-full">

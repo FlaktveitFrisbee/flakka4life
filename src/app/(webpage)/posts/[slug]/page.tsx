@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 import type { Metadata } from "next";
 import type { PortableTextBlock } from "@/sanity/schemaTypes/blockContentType";
-
+import { unstable_ViewTransition as ViewTransition } from "react";
 export function generateStaticParams() {
   // This opts in the route to be statically generated on demand and cached using ISR (https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration)
   return [];
@@ -63,20 +63,24 @@ export default async function page(props: {
             Innlegg
           </Link>
         </Button>
-        <div className="text-muted-foreground text-sm">
-          {post?.publishedAt
-            ? new Date(post.publishedAt).toLocaleString("no-NO", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZone: "Europe/Oslo",
-              })
-            : null}
-        </div>
+        <ViewTransition name={`post-published-at-${slug}`}>
+          <div className="text-muted-foreground text-sm">
+            {post?.publishedAt
+              ? new Date(post.publishedAt).toLocaleString("no-NO", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  timeZone: "Europe/Oslo",
+                })
+              : null}
+          </div>
+        </ViewTransition>
       </div>
-      <h1 className="pt-4">{post.title}</h1>
+      <ViewTransition name={`post-title-${slug}`}>
+        <h1 className="pt-4">{post.title}</h1>
+      </ViewTransition>
       <PortableText
         value={post.body}
         components={{
