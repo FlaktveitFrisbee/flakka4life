@@ -5,9 +5,9 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  // experimental: {
-  // reactCompiler: true,
-  // },
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     remotePatterns: [
       {

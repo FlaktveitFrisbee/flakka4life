@@ -19,7 +19,7 @@ import avatarImage from "@/images/flaktveit-frisbeegolf-logo.png";
 import { cn, navigation } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { ChevronDownIcon, MoonStarIcon, SunIcon } from "lucide-react";
-
+import { unstable_ViewTransition as ViewTransition } from "react";
 function MobileNavigation(
   props: React.ComponentPropsWithoutRef<typeof DialogTrigger>,
 ) {
@@ -155,16 +155,17 @@ function Avatar({
       className={cn(className, "pointer-events-auto")}
       {...props}
     >
-      <Image
-        src={avatarImage}
-        alt="Flaktveit frisbeegolfklubb logo"
-        sizes={large ? "4rem" : "2.25rem"}
-        className={cn(
-          "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
-          large ? "h-16 w-16" : "h-9 w-9",
-        )}
-        // priority
-      />
+      <ViewTransition name="avatar-header-image">
+        <Image
+          src={avatarImage}
+          alt="Flaktveit frisbeegolfklubb logo"
+          sizes={large ? "4rem" : "2.25rem"}
+          className={cn(
+            "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
+            large ? "h-16 w-16" : "h-9 w-9",
+          )}
+        />
+      </ViewTransition>
     </Link>
   );
 }
