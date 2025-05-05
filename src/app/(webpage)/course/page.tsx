@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Projects() {
   const caddieBookPdfUrl =
-    "https://cdn.sanity.io/files/iy9nrfxf/production/d447095d380b94887f6cac9f00b06b0d8bc899e2.pdf";
+    "https://cdn.sanity.io/files/iy9nrfxf/production/e198422330a834163b8347cd1b4e8d2af4e28148.pdf";
 
   return (
     <SimpleLayout
