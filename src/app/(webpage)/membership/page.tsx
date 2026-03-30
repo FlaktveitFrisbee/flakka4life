@@ -36,12 +36,6 @@ const steps = [
   },
 ];
 
-const highlights = [
-  "Innmelding går nå direkte i klubbens medlemssystem.",
-  "Du slipper manuell behandling via Discord-skjema.",
-  "Spond fungerer både i app og nettleser.",
-];
-
 export const metadata: Metadata = {
   title: "Bli medlem via Spond",
   description:
@@ -51,7 +45,7 @@ export const metadata: Metadata = {
 export default function MembershipPage() {
   return (
     <Container className="mt-16 sm:mt-32">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:items-start">
+      <div className="max-w-5xl">
         <section>
           <p className="text-sm font-semibold tracking-[0.2em] text-teal-500 uppercase dark:text-teal-400">
             Medlemskap
@@ -91,7 +85,7 @@ export default function MembershipPage() {
             videre til app eller installasjon.
           </p>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {steps.map(({ title, description, icon: Icon }) => (
               <article
                 key={title}
@@ -111,59 +105,32 @@ export default function MembershipPage() {
           </div>
         </section>
 
-        <aside className="relative overflow-hidden rounded-[2rem] border border-teal-200/80 bg-linear-to-br from-teal-50 via-white to-zinc-50 p-6 shadow-lg shadow-zinc-950/5 dark:border-teal-900/60 dark:from-teal-950/40 dark:via-zinc-900 dark:to-zinc-950">
-          <div className="absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-teal-400/70 to-transparent" />
-          <p className="text-sm font-semibold tracking-[0.2em] text-teal-600 uppercase dark:text-teal-300">
-            Slik fungerer det
+        <section className="mt-10 rounded-3xl border border-zinc-200/80 bg-zinc-50/80 p-6 shadow-sm shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900/70">
+          <p className="text-sm font-semibold text-teal-500 dark:text-teal-300">
+            Trenger du hjelp?
           </p>
-          <h2 className="mt-4 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Kortere vei fra interesse til medlemskap
-          </h2>
-          <p className="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-            Den gamle løsningen sendte medlemsdata til Discord for manuell
-            oppfølging. Nå går forespørselen rett til Spond, der klubben
-            allerede håndterer medlemmer og godkjenninger.
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+            Ta kontakt hvis du står fast med invitasjonen eller lurer på
+            medlemskapet.
           </p>
-
-          <ul className="mt-6 space-y-3">
-            {highlights.map((highlight) => (
-              <li
-                key={highlight}
-                className="flex items-start gap-3 rounded-2xl border border-white/80 bg-white/80 p-4 text-sm text-zinc-700 shadow-sm shadow-zinc-950/5 dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-300"
-              >
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500 dark:text-teal-300" />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-8 rounded-2xl border border-zinc-200/80 bg-zinc-950 p-5 text-zinc-100 dark:border-zinc-800">
-            <p className="text-sm font-semibold text-teal-300">
-              Trenger du hjelp?
-            </p>
-            <p className="mt-2 text-sm leading-6 text-zinc-300">
-              Ta kontakt hvis du står fast med invitasjonen eller lurer på
-              medlemskapet.
-            </p>
-            <div className="mt-4 flex flex-col gap-3">
-              <Link
-                href={`mailto:${contactEmail}`}
-                className="text-sm font-medium text-white transition hover:text-teal-300"
-              >
-                {contactEmail}
-              </Link>
-              <Link
-                href={discordUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 text-sm font-medium text-white transition hover:text-teal-300"
-              >
-                <MessageCircleMore className="h-4 w-4" />
-                Bli med på Discord
-              </Link>
-            </div>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+            <Link
+              href={`mailto:${contactEmail}`}
+              className="text-sm font-medium text-zinc-900 transition hover:text-teal-500 dark:text-zinc-100 dark:hover:text-teal-300"
+            >
+              {contactEmail}
+            </Link>
+            <Link
+              href={discordUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-900 transition hover:text-teal-500 dark:text-zinc-100 dark:hover:text-teal-300"
+            >
+              <MessageCircleMore className="h-4 w-4" />
+              Bli med på Discord
+            </Link>
           </div>
-        </aside>
+        </section>
       </div>
     </Container>
   );
