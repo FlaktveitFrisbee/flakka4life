@@ -8,6 +8,10 @@ type WebhookPayload = {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!env.SANITY_REVALIDATE_SECRET) {
+      return new Response("Missing SANITY_REVALIDATE_SECRET", { status: 500 });
+    }
+
     const { isValidSignature, body } = await parseBody<WebhookPayload>(
       req,
       env.SANITY_REVALIDATE_SECRET,
