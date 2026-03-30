@@ -55,7 +55,7 @@ export default function About() {
             <p>
               Frisbeegolf er et lavterskeltilbud som passer store og små, og vi
               i klubben har barn og unge som satsningsområde. Ønsker du å bli
-              medlem er det gjort på et par tastetrykk inne på denne nettsiden.
+              medlem kan du gjøre det raskt via Spond fra denne nettsiden.
             </p>
             <Button asChild>
               <Link href="/membership">Bli medlem</Link>
