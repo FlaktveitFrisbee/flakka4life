@@ -4,14 +4,13 @@ import { z } from "zod";
 // https://env.t3.gg/docs/nextjs
 export const env = createEnv({
   server: {
-    DISCORD_WEBHOOK_URL: z.string().url(),
     DISC_GOLF_METRIX_API_URL: z.string().url(),
-    SANITY_API_READ_TOKEN: z.string(),
-    SANITY_REVALIDATE_SECRET: z.string(),
+    SANITY_API_READ_TOKEN: z.string().optional(),
+    SANITY_REVALIDATE_SECRET: z.string().optional(),
   },
 
   client: {
-    NEXT_PUBLIC_POSTHOG_KEY: z.string(),
+    NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
     NEXT_PUBLIC_SANITY_DATASET: z.string(),
   },
@@ -21,7 +20,6 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
-    DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL,
     DISC_GOLF_METRIX_API_URL: process.env.DISC_GOLF_METRIX_API_URL,
     SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
     SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,

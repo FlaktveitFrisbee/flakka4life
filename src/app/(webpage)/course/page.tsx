@@ -35,7 +35,7 @@ export default function Projects() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Last ned banekart
+              Last ned caddybok
             </a>
           </Button>
         </div>
