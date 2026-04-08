@@ -6,7 +6,7 @@ import { getCompetition } from "@/server/queries";
 import { currentWeekly, weeklies } from "./helpers";
 import { notFound } from "next/navigation";
 import FlakkacupLinks from "./flakkacup-links";
-import Link from "next/link";
+// import Link from "next/link";
 export const metadata: Metadata = {
   title: "Flakkacup",
   description: "Flakkacup er en ukentlig frisbeegolfturnering på Flaktveit.",
@@ -24,14 +24,14 @@ export default async function FlakkacupPage() {
       title="Flakkacup"
       intro="Flakkacup er en ukentlig frisbeegolfturnering på Flaktveit."
     >
-      <div className="prose prose-sm dark:prose-invert sm:prose lg:prose-lg max-w-full pb-4">
+      {/* <div className="prose prose-sm dark:prose-invert sm:prose lg:prose-lg max-w-full pb-4">
         <strong>Påmeldingsavgift for sesongen 2025</strong>
         <br />
         Deltakere som spiller 3 runder eller mer må betale 50kr i
         påmeldingsavgift.
         <br />
         Vipps til #695783 «FlakkaCup CTP|Acepot 2025».
-      </div>
+      </div> */}
       <h2 className="pb-4 text-2xl font-semibold">
         Resultater fra {currentWeekly.name}
       </h2>
@@ -53,7 +53,7 @@ export default async function FlakkacupPage() {
       </div>
 
       <h2 className="pt-8 pb-4 text-2xl font-semibold">
-        Informasjon om Flakkacup 2025
+        Informasjon om Flakkacup 2026
       </h2>
       {/* The folling html is just copied from the sanity rendered post */}
       <div
@@ -71,9 +71,13 @@ export default async function FlakkacupPage() {
           <strong>Divisjoner</strong>
         </p>
         <ul>
-          <li>MPO, herrer over 900 rating.</li>
+          <li>
+            MPO, over 900 rating. Man kan velge å spille i MPO selv om man er
+            under 900 rating.
+          </li>
           <li>FPO, damer.</li>
-          <li>Rekreasjon, herrer under 900 rating.</li>
+          <li>MP40, Pro Masters 40+. Alder 40 år og over.</li>
+          <li>Rekreasjon, under 900 rating.</li>
           <li>Junior, under 18 år.</li>
         </ul>
         <p>
@@ -84,8 +88,8 @@ export default async function FlakkacupPage() {
           i rekreasjon eller å gå opp til MPO.
         </p>
         <p>Med sunn fornuft går dette fint 😊</p>
-        <p>
-          <strong>Påmeldingsavgift for sesongen 2025</strong>
+        {/* <p>
+          <strong>Påmeldingsavgift for sesongen 2026</strong>
         </p>
         <ul>
           <li>
@@ -98,7 +102,7 @@ export default async function FlakkacupPage() {
           <li>
             Deltakere må betale påmeldingsavgift for å kunne vinne premier.
           </li>
-        </ul>
+        </ul> */}
         <p>
           <strong>Premiering</strong>
         </p>
@@ -125,7 +129,7 @@ export default async function FlakkacupPage() {
         </p>
         <p>1.plass - 15 poeng</p>
         <p>2.plass - 12 poeng</p>
-        <p>3.plass -10 poeng</p>
+        <p>3.plass - 10 poeng</p>
         <p>4.plass - 8 poeng</p>
         <p>5.plass - 6 poeng</p>
         <p>6.plass - 5 poeng</p>
@@ -135,11 +139,11 @@ export default async function FlakkacupPage() {
         <p>10.plass - 1 poeng</p>
         <p>
           Dere kan følge med på sammenlagtstillingen på vår hjemmeside:{" "}
-          <a href="https://flaktveitfrisbee.no/">
+          <a href="https://flaktveitfrisbee.no/flakkacup">
             https://flaktveitfrisbee.no/{" "}
           </a>
         </p>
-        <p>
+        {/* <p>
           <strong>Vi kjører CTP og Acepot hver runde.</strong>
         </p>
         <p>
@@ -172,7 +176,7 @@ export default async function FlakkacupPage() {
           første PDGA runde legges ut. Dere finner oversikt over alle rundene og
           hvilke som er PDGA i kalenderen vår. Denne finner du{" "}
           <Link href="/">her</Link>.
-        </p>
+        </p> */}
       </div>
     </SimpleLayout>
   );

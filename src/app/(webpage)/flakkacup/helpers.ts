@@ -9,36 +9,44 @@ export type Weekly = {
 };
 
 export const currentWeekly: Weekly = {
-  id: "3234051",
-  name: "Flakkacup 2025",
+  id: "3566662",
+  name: "Flakkacup 2026",
   significantRounds: 10,
-  metrixLink: "https://discgolfmetrix.com/3234051",
+  metrixLink: "https://discgolfmetrix.com/3566662",
   prerender: false, // Since this tournament is ongoing, we don't want to prerender it statically.
 };
 
 export const weeklies: Weekly[] = [
   currentWeekly,
-  {
-    id: "2874902",
-    name: "Flakkacup 2024",
-    significantRounds: 10,
-    metrixLink: "https://discgolfmetrix.com/2874902",
-    prerender: true,
-  },
-  {
-    id: "2455515",
-    name: "Flakkacup 2023",
-    significantRounds: 100,
-    metrixLink: "https://discgolfmetrix.com/2455515",
-    prerender: true,
-  },
-  {
-    id: "2056256",
-    name: "Flakkacup 2022",
-    significantRounds: 100,
-    metrixLink: "https://discgolfmetrix.com/2056256",
-    prerender: true,
-  },
+  // Metrix has blocked access for competitions older than 1 year, so for now we leave these commented out
+  // {
+  //   id: "3234051",
+  //   name: "Flakkacup 2025",
+  //   significantRounds: 10,
+  //   metrixLink: "https://discgolfmetrix.com/3234051",
+  //   prerender: true,
+  // },
+  // {
+  //   id: "2874902",
+  //   name: "Flakkacup 2024",
+  //   significantRounds: 10,
+  //   metrixLink: "https://discgolfmetrix.com/2874902",
+  //   prerender: true,
+  // },
+  // {
+  //   id: "2455515",
+  //   name: "Flakkacup 2023",
+  //   significantRounds: 100,
+  //   metrixLink: "https://discgolfmetrix.com/2455515",
+  //   prerender: true,
+  // },
+  // {
+  //   id: "2056256",
+  //   name: "Flakkacup 2022",
+  //   significantRounds: 100,
+  //   metrixLink: "https://discgolfmetrix.com/2056256",
+  //   prerender: true,
+  // },
 ];
 
 export const getWeekly = (id: string) => {
